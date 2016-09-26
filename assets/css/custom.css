@@ -95,6 +95,26 @@ body {
   text-align: left;
 }
 
+.docs-menu {
+  padding-left: 0;
+  font-size: 1.1em;
+}
+
+.docs-menu span {
+  color: #bdf;
+}
+.docs-menu span,
+.docs-menu a {
+  padding: 0.2em;
+}
+
+.docs-menu ul {
+  padding-left: 10px;
+}
+.docs-menu li {
+  list-style-type: none;
+}
+
 .footer {
   margin-top: 3em;
 }
