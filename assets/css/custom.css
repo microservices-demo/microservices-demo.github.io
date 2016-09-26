@@ -19,6 +19,11 @@ body {
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
+h1 {
+  color: #ff194b;
+}
+
+
 .page-container {
   width: 100%;
   margin-left: auto;
