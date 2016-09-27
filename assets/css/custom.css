@@ -23,6 +23,12 @@ h1 {
   color: #ff194b;
 }
 
+pre {
+  color: #0f0;
+  background-color: #000;
+  border: 0 solid #000;
+}
+
 
 .page-container {
   width: 100%;
