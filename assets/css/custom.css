@@ -7,7 +7,7 @@ a:hover {
 
 html,
 body {
-  color: #fff;
+  color: #eef;
   background-color: #32324B;
   -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
           box-shadow: inset 0 0 100px rgba(0,0,0,.5);
@@ -88,7 +88,6 @@ pre {
 }
 
 .hero p {
-  color: #fff;
   font-size: 1.1em;
 }
 .hero p.lead {
