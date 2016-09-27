@@ -70,8 +70,20 @@
             </ul>
           </div>
           <div class="col-sm-8">
-            <h2>Socks Shop on Nomad</h2>
-            <p>Coming soon!</p>
+            <h2>Load test</h2>
+            <p>
+              The load test simulates user traffic to Sock Shop, please run it against the front-end service.
+              The address and port of the frontend will be different and depend on which platform you've deployed to.
+              See the notes for each deployment.
+            </p>
+            <p>
+              The syntax for running the load test container is:
+              <pre><code>docker run weaveworksdemos/load-test -h $frontend-ip[:$port] -r 100 -c 2</code></pre>
+            </p>
+            <p>
+              For example, on the <a href="/docs/docker-single-weave.html">Docker (single-host with Weave)</a> deployment, on Docker for Mac:
+              <pre><code>docker run weaveworksdemos/load-test -h localhost -r 100 -c 2</code></pre>
+            </p>
           </div>
         </div>
 

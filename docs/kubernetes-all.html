@@ -39,6 +39,10 @@
         <div class="row">
           <div class="col-sm-4">
             <ul class="docs-menu">
+              <li><a href="/docs/">Introduction</a></li>
+              <li><a href="/docs/load-test.html">Load Test</a></li>
+            </ul>
+            <ul class="docs-menu">
               <li><a href="/docs/ecs.html">Amazon ECS</a></li>
               <li><span>Docker</span>
                 <ul>
@@ -76,9 +80,9 @@
             <p>
               Start a Kubernetes master:
               <pre><code>(master)$ kubeadm init</code></pre>
-            <p>
-
             </p>
+
+            <p>
               Start one or more Kubernetes nodes, using:
               <pre><code>(node1)$ kubeadm join --token=$token $master-ip
 (node2)$ kubeadm join --token=$token $master-ip</code></pre>
