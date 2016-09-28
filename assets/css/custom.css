@@ -21,6 +21,11 @@ body {
 
 h1 {
   color: #ff194b;
+  color: #64644B;
+}
+
+h2 {
+  margin-top: 0;
 }
 
 pre {
