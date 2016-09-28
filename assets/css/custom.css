@@ -16,15 +16,14 @@ body {
 body {
   text-align: center;
   margin: 0 auto;
-  text-shadow: 0 1px 3px rgba(0,0,0,.5);
 }
 
 h1 {
-  color: #ff194b;
-  color: #64644B;
+  color: #111133;
 }
 
 h2 {
+  color: #ff194b;
   margin-top: 0;
 }
 
