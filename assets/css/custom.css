@@ -27,6 +27,10 @@ h2 {
   margin-top: 0;
 }
 
+h3 {
+  color: #bdf;
+}
+
 pre {
   color: #0d0;
   background-color: #000;
