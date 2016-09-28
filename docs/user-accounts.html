@@ -71,38 +71,30 @@
             </ul>
           </div>
           <div class="col-sm-8">
-
-            <h2>Socks Shop on Kubernetes</h2>
-            <p>
-              The configuration for each Kubernetes Service and Deployment is specified separately in individual YAML files.
-              It also includes Kubernetes Network Policy configurations for each of the services.
-            </p>
-
-            <h3>Set up Kubernetes</h3>
-            <p>
-              Start a Kubernetes master:
-              <pre><code>(master)$ kubeadm init</code></pre>
-            </p>
-
-            <p>
-              Start one or more Kubernetes nodes, using:
-              <pre><code>(node1)$ kubeadm join --token=$token $master-ip
-(node2)$ kubeadm join --token=$token $master-ip</code></pre>
-            </p>
-
-            <h3>Install a pod network</h3>
-            <p>
-              Weave Net and the policy engine are specified in a DaemonSet, handily available at this URL.
-              <pre><code>(master)$ kubectl apply -f http://git.io/weave-kube</code></pre>
-            </p>
-
-            <h3>Launch Socks Shop!</h3>
-            <p>
-              Socks Shop is launched by applying all of the YAML files in this directory:
-              <pre><code>(master)$ git clone https://github.com/microservices-demo/microservices-demo
-                (master)$ kubectl apply -f deploy/kubernetes/manifests</code></pre>
-            </p>
-
+            <h2>User Accounts</h2>
+            <p>To log into Socks Shop and complete a transaction, you'll need a </p>
+            <table>
+              <thead>
+                <tr>
+                  <td>Username</td>
+                  <td>Password</td>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>user</td>
+                  <td>password</td>
+                </tr>
+                <tr>
+                  <td>user1</td>
+                  <td>password</td>
+                </tr>
+                <tr>
+                  <td>Eve_Berger</td>
+                  <td>eve</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
 
