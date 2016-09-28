@@ -51,7 +51,12 @@ pre {
 .header div.header-home {
   font-size: 1.7em;
   font-weight: bold;
-  margin: 0.3em 0 0 0;
+  margin: 0.3em 0 0;
+  padding: 0 0 0 30px;
+  background-image: url(/assets/img/weaveworks-logo.png);
+  background-repeat: no-repeat;
+  background-position-y: 0.3em;
+  background-size: 1em 1em;
 }
 
 .header-nav > li {
