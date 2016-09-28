@@ -125,19 +125,19 @@ pre {
   list-style-type: none;
 }
 
-table.user-creds {
+table.user-creds td {
+  padding: 0.2em 0.5em;
 }
 
 table.user-creds thead tr td {
   font-weight: bold;
   color: #bdf;
-  padding: 0.1em;
 }
 
 table.user-creds tbody tr td {
+  border-top: 1px solid #bdf;
   font-weight: normal;
   font-size: 1.0em;
-  padding: 0.1em;
 }
 
 .footer {
