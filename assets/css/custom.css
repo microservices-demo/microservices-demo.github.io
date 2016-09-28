@@ -48,6 +48,10 @@ pre {
   margin: 20px 0;
 }
 
+.header div.header-home {
+  font-size: 2em;
+  margin: 2em 0 1em;
+}
 
 .header-nav > li {
   display: inline-block;
