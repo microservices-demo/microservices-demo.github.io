@@ -158,6 +158,10 @@ table.user-creds tbody tr td {
   font-size: 1.0em;
 }
 
+.inner .row .col-sm-8 {
+  font-size: 1.0em;
+}
+
 .footer {
   margin-top: 3em;
 }
