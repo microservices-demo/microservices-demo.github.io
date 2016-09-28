@@ -49,8 +49,9 @@ pre {
 }
 
 .header div.header-home {
-  font-size: 2em;
-  margin: 2em 0 1em;
+  font-size: 1.7em;
+  font-weight: bold;
+  margin: 0.3em 0 0 0;
 }
 
 .header-nav > li {
