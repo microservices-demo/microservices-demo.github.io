@@ -125,6 +125,20 @@ pre {
   list-style-type: none;
 }
 
+table.user-creds {
+}
+
+table.user-creds thead tr td {
+  font-weight: bold;
+  padding: 0.1em;
+}
+
+table.user-creds tbody tr td {
+  font-weight: normal;
+  font-size: 1.0em;
+  padding: 0.1em;
+}
+
 .footer {
   margin-top: 3em;
 }
