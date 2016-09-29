@@ -5,12 +5,15 @@ a:hover {
 }
 
 
-html,
-body {
-  color: #eef;
+html {
   background-color: #32324B;
   -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
           box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+
+body {
+  color: #eef;
+  background-color: #32324B;
 }
 
 body {
@@ -159,7 +162,7 @@ table.user-creds tbody tr td {
 }
 
 .inner .row .col-sm-8 p {
-  font-size: 1.0em;
+  font-size: 1.2em;
 }
 
 .footer {

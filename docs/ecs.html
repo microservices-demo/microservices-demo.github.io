@@ -74,6 +74,31 @@
             <h2>Socks Shop on Amazon ECS</h2>
             <p>Coming soon!</p>
 
+            <h3>Pre-requisites</h3>
+            <p>
+              The <a href="https://aws.amazon.com/cli/">AWS CLI</a> must be installed and configured on the machine.
+            </p>
+
+            <h3>Setup</h3>
+            <p>
+              Clone the demo repository:
+              <pre><code>(master)$ git clone https://github.com/microservices-demo/microservices-demo
+cd deploy/aws-ecs
+</code></pre>
+            </p>
+            <p>
+              To deploy and start the demo, run the setup script to deploy to ECS:
+              <pre><code>./setup.sh</code></pre>
+              This may take a few minutes to complete. Once it's done, it will print the URL for the demo frontend, as well as the URL for the Weave Scope instance that can be used to visualize the containers and their connections.
+            </p>
+
+            <h3>Cleanup</h3>
+            <p>
+              To tear down the containers and their associated AWS objects, run the cleanup script:
+              <pre><code>./cleanup.sh</code></pre>
+              Remember not to leave it running!
+            </p>
+
             <h3>Simulate users</h3>
             <p>
               Now Socks Shop is up and running, <a href="/docs/load-test.html">simulate some users</a>...
