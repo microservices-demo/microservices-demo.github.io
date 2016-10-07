@@ -165,6 +165,11 @@ table.user-creds tbody tr td {
   font-size: 1.2em;
 }
 
+.inner .row .col-sm-8 p a {
+  text-decoration: underline;
+}
+
+
 .footer {
   margin-top: 3em;
 }

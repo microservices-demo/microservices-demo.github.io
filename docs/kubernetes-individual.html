@@ -100,10 +100,9 @@
             <p>
               Socks Shop is launched by applying all of the YAML files in each directory.
               The <code>manifests</code> directory contains the Socks Shop services.
-              The <code>manifests-policy</code> directory contains Kubernetes network policy configurations that limit access to each service.
               <pre><code>(master)$ git clone https://github.com/microservices-demo/microservices-demo
-(master)$ kubectl apply -f deploy/kubernetes/manifests
-(master)$ kubectl apply -f deploy/kubernetes/manifests-policy
+(master)$ cd deploy/kubernetes/manifests
+(master)$ kubectl apply -f sock-shop-ns.yml -f .
 </code></pre>
             </p>
 
