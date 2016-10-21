@@ -196,3 +196,10 @@ table.user-creds tbody tr td {
     width: 800px;
   }
 }
+
+code.highlighter-rouge {
+  color: #0d0;
+  background:#32324B;
+  font-weight:400;
+  font-style: normal;
+}
