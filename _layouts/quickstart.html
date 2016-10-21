@@ -23,11 +23,11 @@
 
     <div class="page-container container">
       <div class="header clearfix">
-        <div class="header-home"><a href="/">Socks Shop</a></div>
+        <div class="header-home"><a href="{{site.main_url_prefix}}/">Socks Shop</a></div>
         <nav>
           <ul class="nav header-nav">
-            <li><a href="/docs/quickstart.html">Quickstart</a></li>
-            <li class="active"><a href="/docs/index.html">Docs</a></li>
+            <li class="active"><a href="{{site.main_url_prefix}}/docs/quickstart.html">Quickstart</a></li>
+            <li><a href="{{site.main_url_prefix}}/docs/">Docs</a></li>
             <li><a href="http://github.com/microservices-demo" target="_blank">GitHub</a></li>
           </ul>
         </nav>
@@ -35,49 +35,13 @@
 
       <div class="inner">
         <h1>Documentation</h1>
-
+        
         <div class="row">
           <div class="col-sm-4">
-            <ul class="docs-menu">
-              <li><a href="/docs/">Introduction</a></li>
-              <li><a href="/docs/load-test.html">Load Test</a></li>
-              <li><a href="/docs/user-accounts.html">User Accounts</a></li>
-            </ul>
-            <ul class="docs-menu">
-              <li><a href="/docs/ecs.html">Amazon ECS</a></li>
-              <li><span>Docker</span>
-                <ul>
-                  <li><a href="/docs/docker-swarm-mode.html">Docker Swarm Mode</a></li>
-                  <li><a href="/docs/docker-swarm-old.html">Docker Swarm (old)</a></li>
-                  <li><a href="/docs/docker-single-weave.html">Docker (single host + Weave)</a></li>
-                  <li><a href="/docs/docker-only.html">Docker (only)</a></li>
-                </ul>
-              </li>
-              <li><span>Kubernetes</span>
-                <ul>
-                  <li><a href="/docs/kubernetes-all.html">Kubernetes (all-in-one)</a></li>
-                  <li><a href="/docs/kubernetes-individual.html">Kubernetes (individual)</a></li>
-                </ul>
-              </li>
-              <li><span>Mesos</span>
-                <ul>
-                  <li><a href="/docs/mesos-cni.html">Mesos + CNI</a></li>
-                  <li><a href="/docs/mesos-marathon.html">Mesos + Marathon</a></li>
-                  <li><a href="/docs/minimesos-marathon.html">Minimesos + Marathon</a></li>
-                  <li><a href="/docs/dc-os.html">DC/OS</a></li>
-                </ul>
-              </li>
-              <li><a href="/docs/nomad.html">Nomad</a></li>
-            </ul>
+            {% include doc_menu.html %}
           </div>
           <div class="col-sm-8">
-            <h2>Socks Shop on Docker</h2>
-            <p>Coming soon!</p>
-
-            <h3>Simulate users</h3>
-            <p>
-              Now Socks Shop is up and running, <a href="/docs/load-test.html">simulate some users</a>...
-            </p>
+            {{ content }}
           </div>
         </div>
 
