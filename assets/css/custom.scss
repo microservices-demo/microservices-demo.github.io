@@ -38,6 +38,13 @@ pre {
   border: none;
 }
 
+code.highlighter-rouge {
+  background-color: #fafafb;
+  border: 1px solid #cacaca;
+  border-radius: 3px;
+  color: #393939;
+}
+
 .page-container {
   width: 100%;
   margin-left: auto;
@@ -191,6 +198,7 @@ table.user-creds tbody tr td {
     width: 800px;
   }
 }
+
 #swagger-ui-container  {
   * {
     width: auto;
