@@ -1,0 +1,344 @@
+---
+---
+a,
+a:focus,
+a:hover {
+  color: #fff;
+}
+
+
+html {
+  background-color: #32324B;
+  -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+          box-shadow: inset 0 0 100px rgba(0,0,0,.5);
+}
+
+body {
+  color: #eef;
+  background-color: #32324B;
+}
+
+body {
+  text-align: center;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #ff194b;
+  margin-top: 0;
+}
+
+h3 {
+  color: #bdf;
+}
+
+pre {
+  color: #63E463;
+  background-color: #444;
+  border: none;
+}
+
+.page-container {
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.header {
+  margin: 20px 0;
+}
+
+.header div.header-home {
+  font-size: 1.7em;
+  font-weight: bold;
+  margin: 0.3em 0 0;
+  padding: 0 0 0 30px;
+  background-image: url({{ site.deploy_doc_url_prefix }}/assets/img/weaveworks-logo.png);
+  background-repeat: no-repeat;
+  background-position-y: 0.3em;
+  background-size: 1em 1em;
+}
+
+.header-nav > li {
+  display: inline-block;
+}
+.header-nav > li + li {
+  margin-left: 20px;
+}
+.header-nav > li > a {
+  padding-right: 0;
+  padding-left: 0;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff; /* IE8 proofing */
+  color: rgba(255,255,255,.75);
+  border-bottom: 2px solid transparent;
+}
+.header-nav > li > a:hover,
+.header-nav > li > a:focus {
+  background-color: transparent;
+  border-bottom-color: #a9a9a9;
+  border-bottom-color: rgba(255,255,255,.25);
+}
+.header-nav > .active > a,
+.header-nav > .active > a:hover,
+.header-nav > .active > a:focus {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.hero-banner {
+  background: url(../img/hero_socks.png);
+  margin: 0 0 2em;
+}
+
+.hero {
+  padding: 20% 5% 10%;
+}
+
+.hero > h1 {
+  color: #ff194b;
+  font-size: 4em;
+}
+.hero > h2 {
+  color: #bdf;
+  font-size: 1.8em;
+}
+
+.hero p {
+  font-size: 1.1em;
+}
+.hero p.lead {
+  color: #fff;
+  font-size: 1.7em;
+}
+
+.hero p a,
+.hero p a:focus,
+.hero p a:hover {
+  color: #00d2ff;
+}
+
+.inner {
+  text-align: left;
+}
+
+.docs-menu {
+  padding-left: 0;
+  font-size: 1.1em;
+}
+
+.docs-menu span {
+  color: #bdf;
+}
+.docs-menu span,
+.docs-menu a {
+  padding: 0.2em;
+}
+
+.docs-menu ul {
+  padding-left: 10px;
+}
+.docs-menu li {
+  list-style-type: none;
+}
+
+table.user-creds td {
+  padding: 0.2em 0.5em;
+}
+
+table.user-creds thead tr td {
+  font-weight: bold;
+  color: #bdf;
+}
+
+table.user-creds tbody tr td {
+  border-top: 1px solid #bdf;
+  font-weight: normal;
+  font-size: 1.0em;
+}
+
+.inner .row .col-sm-8 p {
+  font-size: 1.2em;
+}
+
+.inner .row .col-sm-8 p a {
+  text-decoration: underline;
+}
+
+
+.footer {
+  margin-top: 3em;
+}
+
+@media (min-width: 768px) {
+  .header-home {
+    float: left;
+  }
+  .header-nav {
+    float: right;
+  }
+}
+
+@media (min-width: 768px) {
+  .page-container {
+    width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .page-container {
+    width: 800px;
+  }
+}
+#swagger-ui-container  {
+  * {
+    width: auto;
+    list-style-type: none;
+  }
+  ul#resources, #resources_container, ul.endpoints, ul.operations {
+    margin: 0;
+    padding: 0;
+  }
+  .info_title {
+    font-size: 3rem;
+    color: #ff194b;
+  }
+  .info_license {
+    display: none;
+  }
+  .info {
+    margin-bottom: 1.5rem;
+  }
+  .footer {
+    margin-top: 2rem;
+  }
+  #resources {
+    .heading * {
+      display: inline;
+    }
+    .heading {
+      margin-bottom: 1rem;
+    }
+    .options li+li:before, .signature-nav li+li:before {
+      content: '|';
+    }
+  }
+  ul.options {
+    margin-top: 1rem;
+    float: right;
+  }
+  .model-signature {
+    .description {
+      div, span {
+        margin-left: 1rem;
+        font-size: inherit;
+      }
+    }
+    .signature-container {
+      color: #63E463;
+      background-color: #444;
+      padding: 1rem;
+    }
+
+  }
+  .heading h3 {
+    margin-top: 1rem;
+    font-size: 2rem;
+  }
+  .http_method .toggleOperation {
+    text-decoration: none;
+  }
+  ul.signature-nav {
+    padding-left: 0;
+    padding-bottom: 1rem;
+    a.selected {
+      font-weight: bold;
+    }
+    li {
+      display: inline;
+    }
+  }
+  ul#resources li.resource ul.endpoints {
+    a {
+      color: black;
+    }
+    li.endpoint ul.operations {
+      li.operation {
+        margin-bottom: 10px;
+        div.content {
+          padding: 10px;
+          color: black;
+          p, h4 {
+            padding: 5px;
+          }
+        }
+        div.heading h3 span.http_method a {
+          font-weight: 300;
+          text-transform: uppercase;
+          text-decoration: none;
+          color: #fff;
+          display: inline-block;
+          width: 50px;
+          font-size: .7em;
+          text-align: center;
+          padding: 7px 0 4px;
+          border-radius: 2px;
+        }
+
+      }
+      li.operation.get {
+        div.heading {
+          background-color: #e7f0f7;
+          border: 1px solid #c3d9ec;
+          h3 span.http_method a {
+            background-color: #0f6ab4;
+          }
+        }
+        div.content {
+          background-color: #ebf3f9;
+          border: 1px solid #c3d9ec;
+        }
+      }
+      li.operation.delete {
+        div.content {
+          background-color: #f7eded;
+          border: 1px solid #ec8c6c7;
+        }
+        div.heading {
+          background-color: #f5e8e8;
+          border: 1px solid #e8c6c7;
+          h3 span.http_method a {
+            background-color: #a41e22;
+          }
+        }
+      }
+      li.operation.post {
+        div.content {
+          background-color: #ebf7f0;
+          border: 1px solid #c3e8d1;
+        }
+        div.heading {
+          background-color: #e7f6ec;
+          border: 1px solid #c3e8d1;
+          h3 span.http_method a {
+            background-color: #10a54a;
+          }
+        }
+      }
+      li.operation.patch {
+        div.content {
+          background-color: #faf0ef;
+          border: 1px solid #f0cecb;
+        }
+        div.heading {
+          background-color: #fce9e3;
+          border: 1px solid #f5d5c3;
+          h3 span.http_method a {
+            background-color: #d38042;
+          }
+        }
+      }
+    }
+  }
+}
