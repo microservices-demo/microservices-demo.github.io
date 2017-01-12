@@ -1,0 +1,16 @@
+version: '2'
+
+services:
+  jekyll:
+    build:
+      context: .
+    image: weaveworksdemos/ms-docs
+    command: jekyll serve --host 0.0.0.0 --watch --incremental
+    environment:
+      - JEKYLL_ENV=development
+      - PAGES_REPO_NWO=microservices-demo/microservices-demo
+    ports:
+      - 4000:4000
+    volumes:
+      - .:/srv/jekyll
+      - $PWD/_config.yml.dev:/srv/jekyll/_config.yml
