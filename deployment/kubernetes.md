@@ -1,6 +1,7 @@
 ---
 layout: default
 deployDoc: true
+permalink: /microservices-demo/deployment/kubernetes.html
 ---
 
 ## Sock Shop on Kubernetes + Weave 

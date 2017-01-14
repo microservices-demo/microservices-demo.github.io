@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /microservices-demo/deployment/docker-swarm-weave.html
 ---
 
 ## Sock Shop via Docker Swarm + Weave Scope

@@ -1,6 +1,7 @@
 ---
 layout: default
 deployDoc: true
+permalink: /microservices-demo/deployment/docker-swarm.html
 ---
 
 ## Sock Shop via Docker Swarm
