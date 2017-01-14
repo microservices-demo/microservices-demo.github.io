@@ -1,5 +1,6 @@
 ---
 layout: default
+permalink: /microservices-demo/deployment/ecs-weave-shippable.html
 ---
 
 ## Container-based microservices with AWS, Weave and Shippable
@@ -137,7 +138,7 @@ CI</span> in Shippable</p>
     * Select `Enable project` in left-hand nav
     * Find the `front-end` repo in the list and select `Enable`
     * Verify that your `front-end` project has been enabled:
-    ![front-end-enable](../assets/img/shippable-pipeline-2.png){:width="600px"}
+    ![front-end-enable](/assets/img/shippable-pipeline-2.png){:width="600px"}
 
 {:start="3"}
 3. <p>Create the <span style="color: orange">front-end CD pipeline</span></p>
@@ -223,7 +224,7 @@ environment:
     * Select Branch dropdown: choose `master`
     * Select `Save`
     * Select `SPOG` view and verify that your pipeline has been loaded
-    ![pipeline-load](../assets/img/shippable-pipeline-3.png){:width="600px"}
+    ![pipeline-load](/assets/img/shippable-pipeline-3.png){:width="600px"}
 
 {:start="4"}
 4. <p>Configure an integration between <span style="color: orange">Shippable</span>
@@ -247,7 +248,7 @@ environment:
       * Project Permissions: leave `All projects` selected
       * Select `Save`
       <p></p>  
-  ![sub-integration-ecr](../assets/img/shippable-pipeline-4.png){:width="600px"}
+  ![sub-integration-ecr](/assets/img/shippable-pipeline-4.png){:width="600px"}
 
 {:start="5"}
 5. <p>Configure an integration between <span style="color: orange">Shippable</span>
@@ -283,7 +284,7 @@ Pipeline</span> via an <span style="color: orange">Event Trigger</span></p>
     * Select the `img-front-end` resource you created in your pipeline
     * In Authorization field, enter 'apiToken ' + your API token from above
     * Select `Save`
-    ![acct-integration-trigger](../assets/img/shippable-pipeline-6-1.png){:width="600px"}  
+    ![acct-integration-trigger](/assets/img/shippable-pipeline-6-1.png){:width="600px"}  
   * Now, assign your Account Integration for use by your Subscription
     * Select your Subscription from the dropdown menu in upper left
     * Select `Settings` tab, `Integrations` tab, and `Add Integration`
@@ -293,7 +294,7 @@ Pipeline</span> via an <span style="color: orange">Event Trigger</span></p>
       * Project Permissions: leave `All projects` selected
       * Select `Save`
       <p></p>
-    ![sub-integration-trigger](../assets/img/shippable-pipeline-6-2.png){:width="600px"}
+    ![sub-integration-trigger](/assets/img/shippable-pipeline-6-2.png){:width="600px"}
 
 {:start="7"}
 7. <p>Run CI and trigger deployment of the `front-end` service to the
@@ -301,14 +302,14 @@ Pipeline</span> via an <span style="color: orange">Event Trigger</span></p>
   * Select the `CI` tab
   * Select the `Build` button for the `front-end` project
   * View the CI console as your CI run executes
-  ![ci-front-end](../assets/img/shippable-pipeline-7-1.png){:width="600px"}
+  ![ci-front-end](/assets/img/shippable-pipeline-7-1.png){:width="600px"}
   * Navigate to the `Pipelines` tab and see your Pipeline execute
     * You'll see the CI job run and push a new image to Amazon ECR
     * Then a new Manifest job will run to update with the newest image tag
     * Then a Deploy job will run to deploy to Amazon ECS
-  ![pipeline-test](../assets/img/shippable-pipeline-7-2.png){:width="600px"}
+  ![pipeline-test](/assets/img/shippable-pipeline-7-2.png){:width="600px"}
   * View your application running your `Test` front-end in your browser at `{your ALB address}:8080` (See CloudFormation-Outputs for address)
-  ![front-end-test](../assets/img/shippable-pipeline-7-3.png){:width="600px"}
+  ![front-end-test](/assets/img/shippable-pipeline-7-3.png){:width="600px"}
 
 {:start="8"}
 8. <p>Deploy to the <span style="color: orange">Prod environment</span></p>
@@ -332,20 +333,20 @@ auto-deploy to the Test environment</span></p>
   in the code change being deployed to your Test environment
   * In your browser, navigate again to your Test environment (on port 8080) and
   confirm that the change was deployed successfully
-  ![front-end-test-2](../assets/img/shippable-pipeline-9.png){:width="600px"}
+  ![front-end-test-2](/assets/img/shippable-pipeline-9.png){:width="600px"}
 
 {:start="10"}
 10. <p>Explore!</p>
   * Retrieve the IP address of any of your <a href="https://console.aws.amazon.com/ecs/home#/clusters/ecs-weave-shippable-demo/containerInstances" style="color: orange">cluster instances</a>
   * Navigate to `http://{your IP address}:4040` to view the Weave visualization of
   your containerized application. Click around to see various info on your services.
-  ![weavescope](../assets/img/weavescope-10-1.png){:width="600px"}  
+  ![weavescope](/assets/img/weavescope-10-1.png){:width="600px"}  
   * Navigate to <a href="https://console.aws.amazon.com/ecs/home#/clusters/ecs-weave-shippable-demo/services" style="color: orange">the
   AWS Management Console</a> and explore the different elements of your cluster in Amazon ECS
-  ![amazon-ecs](../assets/img/amazon-ecs-10-2.png){:width="600px"}
+  ![amazon-ecs](/assets/img/amazon-ecs-10-2.png){:width="600px"}
   * Navigate to your Amazon ECR repository to view your newly created Docker images
   * Select `Repositories` in the left-hand nav from your cluster page
-  ![amazon-ecr](../assets/img/amazon-ecr-10-3.png){:width="600px"}
+  ![amazon-ecr](/assets/img/amazon-ecr-10-3.png){:width="600px"}
 
     * Explore additional elements of your Shippable Pipelines:
       * Select the `Jobs` view in the Pipelines tab and click on the `Latest Version`
@@ -353,7 +354,7 @@ auto-deploy to the Test environment</span></p>
       * For the most recent version, select `More` and `Trace` to see details of the
       elements included in this latest deployment to the Test environment
       * Expand the `man-front-end` Resource Name
-  ![pipeline-trace](../assets/img/shippable-pipeline-10-4.png){:width="600px"}
+  ![pipeline-trace](/assets/img/shippable-pipeline-10-4.png){:width="600px"}
 
 ---
 
