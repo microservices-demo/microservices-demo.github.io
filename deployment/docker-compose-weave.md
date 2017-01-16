@@ -64,8 +64,7 @@ This will send some traffic to the application, which will form the connection g
 
 <!-- deploy-doc-hidden run-tests
 
-    docker build -t healthcheck -f deploy/Dockerfile-healthcheck deploy/.
-    docker create -t -\-name healthcheck healthcheck -s user,catalogue,queue-master,cart,shipping,payment,orders -d 120 -r 5
+    docker create -t -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s user,catalogue,queue-master,cart,shipping,payment,orders -d 120 -r 5
     docker network connect dockercomposeweave_secure healthcheck
     docker network connect dockercomposeweave_internal healthcheck
     docker network connect dockercomposeweave_external healthcheck

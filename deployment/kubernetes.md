@@ -31,19 +31,10 @@ cd microservices-demo
 ```
 <!-- deploy-doc-hidden pre-install
 
-    cat > /root/healthcheck.sh <<-EOF
-#!/usr/bin/env bash
-kubectl run -\-namespace=sock-shop healthcheck -\-image=ruby:2.3 sleep 10000
-sleep 90
-kube_id=\$(kubectl get pods -\-namespace=sock-shop | grep healthcheck | awk '{print \$1}')
-kubectl exec -\-namespace=sock-shop \$kube_id -\- sh -c "gem install awesome_print"
-kubectl exec -\-namespace=sock-shop \$kube_id -\- sh -c "curl -o healthcheck.rb \"https://raw.githubusercontent.com/microservices-demo/microservices-demo/master/deploy/healthcheck.rb\"; chmod +x ./healthcheck.rb; ./healthcheck.rb -s user,catalogue,queue-master,cart,shipping,payment,orders"
-
-EOF
-
     mkdir -p ~/.ssh/
     aws ec2 describe-key-pairs -\-key-name deploy-docs-k8s &>/dev/null
     if [ $? -eq 0 ]; then aws ec2 delete-key-pair -\-key-name deploy-docs-k8s; fi
+
 -->
 
 ### Setup Kubernetes
@@ -174,9 +165,7 @@ This will send some traffic to the application, which will form the connection g
 <!-- deploy-doc-hidden run-tests
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    scp -i ~/.ssh/deploy-docs-k8s.pem -rp /root/healthcheck.sh ubuntu@$master_ip:/home/ubuntu
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "chmod +x /home/ubuntu/healthcheck.sh; ./healthcheck.sh"
-
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "kubectl run -i -t -\-namespace=sock-shop healthcheck -\-restart=Never -\-image=weaveworksdemos/healthcheck:snapshot -- -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
     if [ $? -ne 0 ]; then
         exit 1;
     fi
