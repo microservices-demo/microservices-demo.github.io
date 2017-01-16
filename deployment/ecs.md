@@ -51,7 +51,9 @@ Other required packages are:
 
 This may take a few minutes to complete. Once it's done, it will print the URL for the demo frontend, as well as the URL for the Weave Scope instance that can be used to visualize the containers and their connections.
 
-To ensure that the application is running properly, you could perform some load testing on it:
+### Run tests
+
+To ensure that the application is running properly, you could perform some load testing on it using the load-test container. This will send some traffic to the application and generate a report at the end:
 
 <!-- deploy-doc-start run-tests -->
 
@@ -62,19 +64,9 @@ To ensure that the application is running properly, you could perform some load 
 
 <!-- deploy-doc-hidden run-tests
 
-    pem=microservices-demo-key
     chmod 600 -R ~/.ssh/
     instance=$(aws ec2 describe-instances -\-filter "Name=key-name,Values=microservices-demo-key" "Name=instance-state-name,Values=running" | jq -r ".Reservations[0].Instances[0].PublicIpAddress")
-
-    cat >> /root/healthcheck.sh <<-EOF
-#!/usr/bin/env bash
-eval \$(weave env)
-docker build -t healthcheck -f Dockerfile-healthcheck .
-docker run -\-rm -t healthcheck -s user,catalogue,cart,shipping,payment,orders,queue-master -d 180 -r 5
-EOF
-
-    scp -i ~/.ssh/$pem.pem -o "StrictHostKeyChecking no" /root/healthcheck.sh deploy/healthcheck.rb deploy/Dockerfile-healthcheck ec2-user@$instance:/home/ec2-user/
-    ssh -i ~/.ssh/$pem.pem ec2-user@$instance "chmod +x healthcheck.sh; ./healthcheck.sh"
+    ssh -i ~/.ssh/microservices-demo-key.pem -o StrictHostKeyChecking=no ec2-user@$instance "eval \$(weave env); docker run -\-rm -t weaveworksdemos/healthcheck:snapshot -s user,catalogue,cart,shipping,payment,orders,queue-master -d 180 -r 5"
 
     if [ $? -ne 0 ]; then
         exit 1;

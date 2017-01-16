@@ -61,7 +61,7 @@ This will send some traffic to the application, which will form the connection g
 
 Feel free to run it by issuing the following command:
 
-    docker run --rm --net host weaveworksdemos/load-test -d 60 -h localhost:30000 -c 3 -r 10
+    docker run --rm --net host weaveworksdemos/load-test -d 60 -h localhost:30000 -c 2 -r 100
 
 ### Cleaning up
 
@@ -127,27 +127,26 @@ Using any IP from the command: `terraform output`
 <!-- deploy-doc-start run-tests -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value' )
-    docker run --rm weaveworksdemos/load-test -d 300 -h $master_ip:30000 -c 3 -r 10
+    docker run --rm weaveworksdemos/load-test -d 300 -h $master_ip:30000 -c 2 -r 100
 
 <!-- deploy-doc-end -->
 
 #### Local
 
-    docker run --rm weaveworksdemos/load-test -d 60 -h 10.0.0.10:30000 -c 3 -r 10
+    docker run --rm weaveworksdemos/load-test -d 60 -h 10.0.0.10:30000 -c 2 -r 100
 
 <!-- deploy-doc-hidden run-tests
 
     cat > /root/boot.sh <<-EOF
 #!/usr/bin/env bash
-docker build -t healthcheck -f Dockerfile-healthcheck .
-docker service create -\-constraint='node.role == manager' -\-network=dockerswarm_default -\-name healthcheck healthcheck -s user,catalogue,cart,shipping,payment,orders -r 5
+docker service create -\-constraint='node.role == manager' -\-network=dockerswarm_default -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s user,catalogue,cart,shipping,payment,orders -r 5
 sleep 60
 ID=\$(docker ps -a | grep healthcheck | awk '{print \$1}' | head -n1)
 docker logs -f \$ID
 EOF
 
     master_ip=$(terraform output -json | jq -r '.master_address.value' )
-    scp -i ~/.ssh/docker-swarm.pem /root/boot.sh deploy/healthcheck.rb deploy/Dockerfile-healthcheck ubuntu@$master_ip:/home/ubuntu/
+    scp -i ~/.ssh/docker-swarm.pem /root/boot.sh ubuntu@$master_ip:/home/ubuntu/
     ssh -i ~/.ssh/docker-swarm.pem ubuntu@$master_ip "chmod +x boot.sh; ./boot.sh"
 
     if [ $? -ne 0 ]; then
