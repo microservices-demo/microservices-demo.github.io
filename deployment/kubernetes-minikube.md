@@ -1,6 +1,5 @@
 ---
 layout: default
-permalink: /microservices-demo/deployment/kubernetes-minikube.html
 ---
 
 ## Sock Shop on Minikube
