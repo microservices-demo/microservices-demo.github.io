@@ -1,6 +1,5 @@
 ---
 layout: default
-permalink: /microservices-demo/deployment/mesos-cni.html
 ---
 
 ## Mesos + CNI

@@ -1,6 +1,5 @@
 ---
 layout: default
-permalink: /microservices-demo/deployment/mesos-marathon.html
 ---
 
 ## Mesos + Marathon

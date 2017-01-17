@@ -1,6 +1,5 @@
 ---
 layout: default
-permalink: /microservices-demo/deployment/ecs-weave-shippable.html
 ---
 
 ## Container-based microservices with AWS, Weave and Shippable

@@ -2,7 +2,6 @@
 layout: default
 deployDoc: true
 deploymentScriptDir: "aws-ecs"
-permalink: /microservices-demo/deployment/ecs.html
 ---
 
 ## Deployment on Amazon EC/2 Container Service
