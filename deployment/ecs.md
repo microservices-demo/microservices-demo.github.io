@@ -7,24 +7,24 @@ permalink: /microservices-demo/deployment/ecs.html
 
 ## Deployment on Amazon EC/2 Container Service
 
-<!-- deploy-doc require-env AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION -->
-
-<!-- deploy-doc-hidden pre-install
-
-    mkdir -p ~/.ssh/
-    curl -sSL https://get.docker.com/ | sh
-    apt-get install -yq curl jq python-pip unzip build-essential python-dev
-    pip install awscli
-
--->
-
-### Goal
-
 This directory contains the necessary tools to install an instance of the microservice demo application on [AWS ECS](http://docs.aws.amazon.com/AmazonECS/latest/developerguide/Welcome.html).
 
-### Installation
+### Pre-requisites
+* [AWS Account](https://aws.amazon.com/)
+* [awscli](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
+* [Docker](https://www.docker.com/products/overview)
 
-To deploy, you will need an [Amazon Web Services (AWS)](http://aws.amazon.com) account.
+<!-- deploy-doc require-env AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION -->
+<!-- deploy-doc-start pre-install -->
+
+    curl -sSL https://get.docker.com/ | sh
+    apt-get update && apt-get install -yq jq python-pip curl unzip build-essential python-dev
+    pip install awscli
+
+<!-- deploy-doc-end -->
+
+
+### Installation
 
 #### Using CloudFormation
 
@@ -43,28 +43,23 @@ Other required packages are:
 
 <!-- deploy-doc-start create-infrastructure -->
 
-    cd deploy/aws-ecs/
-    ./msdemo-cli build
+    ./deploy/aws-ecs/msdemo-cli build
 
 <!-- deploy-doc-end -->
 
 
 This may take a few minutes to complete. Once it's done, it will print the URL for the demo frontend, as well as the URL for the Weave Scope instance that can be used to visualize the containers and their connections.
 
-### Run tests
-
 To ensure that the application is running properly, you could perform some load testing on it using the load-test container. This will send some traffic to the application and generate a report at the end:
 
 <!-- deploy-doc-start run-tests -->
 
-    cd deploy/aws-ecs/
-    ./msdemo-cli loadtest
+    ./deploy/aws-ecs/msdemo-cli loadtest
 
 <!-- deploy-doc-end -->
 
 <!-- deploy-doc-hidden run-tests
 
-    chmod 600 -R ~/.ssh/
     instance=$(aws ec2 describe-instances -\-filter "Name=key-name,Values=microservices-demo-key" "Name=instance-state-name,Values=running" | jq -r ".Reservations[0].Instances[0].PublicIpAddress")
     ssh -i ~/.ssh/microservices-demo-key.pem -o StrictHostKeyChecking=no ec2-user@$instance "eval \$(weave env); docker run -\-rm -t weaveworksdemos/healthcheck:snapshot -s user,catalogue,cart,shipping,payment,orders,queue-master -d 180 -r 5"
 
@@ -78,7 +73,7 @@ To ensure that the application is running properly, you could perform some load 
 Zipkin is part of the deployment and has been written into some of the services.  While the system is up you can view the traces.
 To get the endpoint for Zipkin you can run 
 
-./msdemo dns
+./deploy/aws-ecs/msdemo dns
 
 Currently orders provide the most comprehensive traces.
 
@@ -88,8 +83,7 @@ To tear down the containers and their associated AWS objects, run the cleanup sc
 
 <!-- deploy-doc-start destroy-infrastructure -->
 
-    cd deploy/aws-ecs/
-    ./msdemo-cli destroy
+    ./deploy/aws-ecs/msdemo-cli destroy
 
 <!-- deploy-doc-end -->
 
