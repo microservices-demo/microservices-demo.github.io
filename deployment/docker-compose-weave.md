@@ -1,7 +1,6 @@
 ---
 layout: default
 deployDoc: true
-permalink: /microservices-demo/deployment/docker-compose-weave.html
 ---
 
 ## Sock Shop  Docker Compose & Weave
