@@ -13,7 +13,7 @@ Weave Net and Weave Scope.
 * *Optional* [AWS Account](https://aws.amazon.com/)
 * *Optional* [awscli](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 
-<!-- deploy-doc require-env AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION -->
+<!-- deploy-doc require-env AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION TF_VAR_aws_region -->
 <!-- deploy-doc-start pre-install -->
 
     curl -sSL https://get.docker.com/ | sh
