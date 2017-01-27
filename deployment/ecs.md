@@ -46,8 +46,17 @@ Other required packages are:
 
 <!-- deploy-doc-end -->
 
+You can optionally add a [Weave Cloud](https://cloud.weave.works/) token to the command as
 
-This may take a few minutes to complete. Once it's done, it will print the URL for the demo frontend, as well as the URL for the Weave Scope instance that can be used to visualize the containers and their connections.
+    ./deploy/aws-ecs/msdemo-cli build myweavetoken
+
+Deployments may take a few minutes to complete.
+
+To track the deploy status you can run:
+
+	./deploy/aws-ecs/msdemo-cli status
+
+Once it's done, it will print the URL for the demo frontend, as well as the URL for the Weave Scope instance that can be used to visualize the containers and their connections.
 
 To ensure that the application is running properly, you could perform some load testing on it using the load-test container. This will send some traffic to the application and generate a report at the end:
 
@@ -89,7 +98,9 @@ To tear down the containers and their associated AWS objects, run the cleanup sc
 #### ms-demo Commands
 
 ##### build
-Builds the deployment using cloud formation
+Builds the deployment using cloud formation 
+
+(optional Weave Cloud Token)
 
 ##### destroy
 Destroys the deployment
@@ -102,3 +113,6 @@ Get DNS endpoint
 
 ##### loadtest
 Run loadtest
+
+##### updatestack
+This will apply any changes you make to the cloudformation.json file
