@@ -32,7 +32,7 @@ Check if it's running with `minikube status`, and make sure the Kubernetes dashb
 Deploy the Sock Shop application on Minikube
 
 ```
-kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yml -f deploy/kubernetes/manifests
+kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests
 ```
 
 Wait for all the Sock Shop services to start:
