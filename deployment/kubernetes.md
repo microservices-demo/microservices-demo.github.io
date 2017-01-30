@@ -126,7 +126,7 @@ There are two options for running Weave Scope, either you can run the UI locally
 <!-- deploy-doc-start create-infrastructure -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/manifests/sock-shop-ns.yml -f /tmp/manifests
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests
 
 <!-- deploy-doc-end -->
 
