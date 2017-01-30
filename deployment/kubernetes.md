@@ -154,20 +154,24 @@ sock_shop_address = MD-k8s-elb-sock-shop-1211989270.eu-west-1.elb.amazonaws.com
 There is a separate load-test available to simulate user traffic to the application. For more information see [Load Test](#loadtest).
 This will send some traffic to the application, which will form the connection graph that you can view in Scope or Weave Cloud.
 
-<!-- deploy-doc-start run-tests -->
+```
 
     elb_url=$(terraform output -json | jq -r '.sock_shop_address.value')
     docker run --rm weaveworksdemos/load-test -d 300 -h $elb_url -c 2 -r 100
 
-<!-- deploy-doc-end -->
+```
 
 <!-- deploy-doc-hidden run-tests
 
+    set -e
+
+    elb_url=$(terraform output -json | jq -r '.sock_shop_address.value')
+    docker run --rm weaveworksdemos/load-test -d 300 -h $elb_url -c 2 -r 100
+
     master_ip=$(terraform output -json | jq -r '.master_address.value')
     ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "kubectl run -i -t -\-namespace=sock-shop healthcheck -\-restart=Never -\-image=weaveworksdemos/healthcheck:snapshot -- -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
-    if [ $? -ne 0 ]; then
-        exit 1;
-    fi
+
+    set +e
 
 -->
 
