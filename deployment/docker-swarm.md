@@ -163,6 +163,8 @@ EOF
     terraform destroy -force deploy/docker-swarm/infra/aws/
     aws ec2 delete-key-pair -\-key-name docker-swarm
     rm ~/.ssh/docker-swarm.pem
+    swarm_ami=$(aws ec2 describe-images --filter Name=name,Values=docker-swarm --query 'Images[0].{ID:ImageId}' --output text)
+    aws ec2 deregister-image --image-id $swarm_ami
     rm terraform.tfstate
     rm terraform.tfstate.backup
 
