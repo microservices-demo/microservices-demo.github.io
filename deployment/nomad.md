@@ -84,7 +84,7 @@ EOF
 
     cd deploy/nomad
     VAGRANT_DEFAULT_PROVIDER=aws vagrant up -\-provider=aws
-    vagrant ssh ci-sockshop-node1 -c "nomad run netman.nomad"
+    vagrant ssh ci-sockshop-nomad-node1 -c "nomad run netman.nomad"
 
 -->
 
@@ -94,26 +94,26 @@ Although this step is option, if you want to run the application using a more ad
 you can do so by running the following Nomad jobs:
 
 ```
-root@local:/# vagrant ssh ci-sockshop-node1
-ubuntu@ci-sockshop-node1:/# nomad run logging-elk.nomad
-ubuntu@ci-sockshop-node1:/# nomad run logging-fluentd.nomad
+root@local:/# vagrant ssh ci-sockshop-nomad-node1
+ubuntu@ci-sockshop-nomad-node1:/# nomad run logging-elk.nomad
+ubuntu@ci-sockshop-nomad-node1:/# nomad run logging-fluentd.nomad
 ```
 
 Once both jobs finish starting you can view the Kibana interface by opening page http://192.168.59.102:5601.
 
 ### Starting the application
-To start the application you will need to ssh into the `ci-sockshop-node1` box and run the respective Nomad jobs:
+To start the application you will need to ssh into the `ci-sockshop-nomad-node1` box and run the respective Nomad jobs:
 
 ```
-root@local:/# vagrant ssh ci-sockshop-node1
-ubuntu@ci-sockshop-node1:/# nomad run netman.nomad
-ubuntu@ci-sockshop-node1:/# nomad run weavedemo.nomad
+root@local:/# vagrant ssh ci-sockshop-nomad-node1
+ubuntu@ci-sockshop-nomad-node1:/# nomad run netman.nomad
+ubuntu@ci-sockshop-nomad-node1:/# nomad run weavedemo.nomad
 ```
 
 The output from the following commands should be similar to what's displayed below:
 
 ```
-ubuntu@ci-sockshop-node1:/#  nomad run netman.nomad
+ubuntu@ci-sockshop-nomad-node1:/#  nomad run netman.nomad
 ==> Monitoring evaluation "858414a3"
     Evaluation triggered by job "netman"
     Allocation "0e3a6a5a" modified: node "9b8300f6", group "main"
@@ -121,7 +121,7 @@ ubuntu@ci-sockshop-node1:/#  nomad run netman.nomad
 ==> Evaluation "858414a3" finished with status "complete"
 ```
 ```
-ubuntu@ci-sockshop-node1:/# nomad run weavedemo.nomad
+ubuntu@ci-sockshop-nomad-node1:/# nomad run weavedemo.nomad
 ==> Monitoring evaluation "0ad17a84"
     Evaluation triggered by job "weavedemo"
     Allocation "5c1ebc22" modified: node "9b8300f6", group "frontend"
@@ -142,7 +142,7 @@ ubuntu@ci-sockshop-node1:/# nomad run weavedemo.nomad
 Taking the Allocation ID of the **frontend** task group above we can ask Nomad about its status:
 
 ```
-ubuntu@ci-sockshop-node1:/# nomad alloc-status 5c1ebc22
+ubuntu@ci-sockshop-nomad-node1:/# nomad alloc-status 5c1ebc22
 ID            = 5c1ebc22
 Eval ID       = c318487e
 Name          = weavedemo.frontend[0]
@@ -190,21 +190,21 @@ docker run --rm weaveworksdemos/load-test -d 300 -h 192.168.59.102 -c 2 -r 100
     . ~/.bash_profile
 
     cd deploy/nomad
-    vagrant ssh ci-sockshop-node1 -c "nomad run weavedemo.nomad"
-    public_dns=$(aws ec2 describe-instances -\-filter "Name=tag:Name,Values=nomad-node" "Name=instance-state-name,Values=running" | jq -r ".Reservations[].Instances[0].PublicIpAddress" | head -n1)
+    vagrant ssh ci-sockshop-nomad-node1 -c "nomad run weavedemo.nomad"
+    public_dns=$(aws ec2 describe-instances -\-filter "Name=tag:Name,Values=ci-sockshop-nomad-node2" "Name=instance-state-name,Values=running" | jq -r ".Reservations[].Instances[0].PublicIpAddress" | head -n1)
     docker run -\-rm weaveworksdemos/load-test -d 300 -h $public_dns -c 3 -r 10
 
-    vagrant ssh ci-sockshop-node1 -c "eval \$(weave env); nomad run weavedemo.nomad; docker create -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
-    vagrant ssh ci-sockshop-node1 -c "docker network connect backoffice healthcheck; \
+    vagrant ssh ci-sockshop-nomad-node1 -c "eval \$(weave env); nomad run weavedemo.nomad; docker create -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
+    vagrant ssh ci-sockshop-nomad-node1 -c "docker network connect backoffice healthcheck; \
         docker network connect internal healthcheck; \
         docker network connect external healthcheck; \
         docker network connect secure healthcheck;"
-    vagrant ssh ci-sockshop-node1 -c "docker start -a healthcheck"
+    vagrant ssh ci-sockshop-nomad-node1 -c "docker start -a healthcheck"
     if [ $? -ne 0 ]; then
-        vagrant ssh ci-sockshop-node1 -c "docker rm -f healthcheck"
+        vagrant ssh ci-sockshop-nomad-node1 -c "docker rm -f healthcheck"
         exit 1
     fi
-    vagrant ssh ci-sockshop-node1 -c "docker rm -f healthcheck"
+    vagrant ssh ci-sockshop-nomad-node1 -c "docker rm -f healthcheck"
 -->
 
 ### Cleaning Up
