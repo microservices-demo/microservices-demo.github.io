@@ -84,6 +84,9 @@ EOF
 
     cd deploy/nomad
     VAGRANT_DEFAULT_PROVIDER=aws vagrant up -\-provider=aws
+    if [ $? -ne 0 ]; then
+        exit 1;
+    fi
     vagrant ssh ci-sockshop-nomad-node1 -c "nomad run netman.nomad"
 
 -->
@@ -191,8 +194,10 @@ docker run --rm weaveworksdemos/load-test -d 300 -h 192.168.59.102 -c 2 -r 100
 
     cd deploy/nomad
     vagrant ssh ci-sockshop-nomad-node1 -c "nomad run weavedemo.nomad"
-    public_dns=$(aws ec2 describe-instances -\-filter "Name=tag:Name,Values=ci-sockshop-nomad-node2" "Name=instance-state-name,Values=running" | jq -r ".Reservations[].Instances[0].PublicIpAddress" | head -n1)
-    docker run -\-rm weaveworksdemos/load-test -d 300 -h $public_dns -c 3 -r 10
+    nomad_node_id=$(vagrant ssh ci-sockshop-nomad-node1 -c "nomad status weavedemo | grep frontend | grep running | awk '{print \$3}'")
+    node_hostname=$(vagrant ssh ci-sockshop-nomad-node1 -c "nomad node-status -short ${nomad_node_id}  | grep Name | awk '{print \$3}'")
+    public_dns=$(aws ec2 describe-instances -\-filter "Name=private-dns-name,Values=${node_hostname}.eu-central-1.compute.internal" "Name=instance-state-name,Values=running" | jq -r ".Reservations[].Instances[0].PublicIpAddress" | head -n1)
+    docker run -\-rm weaveworksdemos/load-test -d 300 -h $public_dns -c 2 -r 20
 
     vagrant ssh ci-sockshop-nomad-node1 -c "eval \$(weave env); nomad run weavedemo.nomad; docker create -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
     vagrant ssh ci-sockshop-nomad-node1 -c "docker network connect backoffice healthcheck; \
