@@ -64,7 +64,7 @@ This will:
     aws ec2 attach-internet-gateway -\-internet-gateway-id $AWS_INTERNET_GATEWAY_ID -\-vpc-id $AWS_VPC_ID
     aws ec2 create-route -\-gateway-id $AWS_INTERNET_GATEWAY_ID -\-destination-cidr-block 0.0.0.0/0 -\-route-table-id $AWS_ROUTE_TABLE_ID
 
-    export AWS_SUBNET_ID=$(aws ec2 create-subnet -\-vpc-id $AWS_VPC_ID -\-cidr-block 192.168.59.0/24 -\-availability-zone eu-west-1c | jq -r '.Subnet.SubnetId')
+    export AWS_SUBNET_ID=$(aws ec2 create-subnet -\-vpc-id $AWS_VPC_ID -\-cidr-block 192.168.59.0/24 -\-availability-zone eu-central-1c | jq -r '.Subnet.SubnetId')
     export AWS_SECURITY_GROUP_ID=$(aws ec2 create-security-group -\-group-name nomad-deploy-doc -\-description "Security Group for nomad deploy doc" -\-vpc-id $AWS_VPC_ID | jq -r '.GroupId' )
     aws ec2 authorize-security-group-ingress -\-group-id $AWS_SECURITY_GROUP_ID -\-protocol tcp -\-port 22 -\-cidr 0.0.0.0/0
     aws ec2 authorize-security-group-ingress -\-group-id $AWS_SECURITY_GROUP_ID -\-protocol tcp -\-port 80 -\-cidr 0.0.0.0/0
