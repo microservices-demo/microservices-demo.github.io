@@ -47,4 +47,12 @@ Get a token by [registering on Weave Cloud](http://cloud.weave.works/). Once you
 
 Once you started the application using Docker Compose, you can visit [Weave Cloud](http://cloud.weave.works/) to see how the containers are connected to each other. You should be seeing something like this:
 
-![Micro Sock in Scope](https://github.com/microservices-demo/microservices-demo.github.io/raw/master/assets/micro-sock-scope.png)
+<a href="url"><img src="https://github.com/microservices-demo/microservices-demo.github.io/raw/master/assets/micro-sock-scope.png" width="700" >Micro Sock in Scope</a>
+
+### Cleaning up
+
+<!-- deploy-doc-start destroy-infrastructure -->
+
+    docker-compose -f deploy/micro-sock/docker-compose.yaml down
+
+<!-- deploy-doc-end -->
