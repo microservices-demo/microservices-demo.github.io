@@ -88,11 +88,8 @@ Create a key pair on AWS and run Mesos Terraform to create the Mesos cluster.
 
 <!-- deploy-doc-start create-infrastructure -->
 
-    #git clone https://github.com/philwinder/mesos-terraform
-    git clone https://github.com/vlal/mesos-terraform /tmp/mesos-terraform
+    git clone https://github.com/philwinder/mesos-terraform /tmp/mesos-terraform
     cd /tmp/mesos-terraform
-    git fetch
-    git checkout install-python
 
     aws ec2 create-key-pair --key-name ci-mesos-cni --query 'KeyMaterial' --output text > ~/.ssh/ci-mesos-cni-key.pem
     chmod 600 ~/.ssh/ci-mesos-cni-key.pem
