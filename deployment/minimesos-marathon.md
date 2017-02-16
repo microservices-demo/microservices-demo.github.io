@@ -14,14 +14,9 @@ minimesos-marathon.sh [OPTION]... [COMMAND]
 
 Starts the weavedemo microservices application on minimesos.
 
-Requirements: Docker-machine, weave and minimesos must be installed.
-
-Tested on: docker-machine version 0.7.0, build a650a40. Weave 1.6.0. minimesos 0.9.0. Mesos 0.25.
+Requirements: Docker, weave and minimesos must be installed.
 
 Commands:
-install           Creates a new docker-machine VM.
-route             Create a route towards the docker-machine
-uninstall         Removes docker-machine VM.
 start             Starts weave, minimesos and the demo application
 stop              Stops weave, minimesos and the demo application
 
@@ -38,7 +33,6 @@ Options:
 ```
 
 ### Prerequisites
-- *macOS only* `Docker-machine`
 - [`minimesos`](https://minimesos.org)
 - `weave`
 - `curl`
@@ -46,8 +40,7 @@ Options:
 <!-- deploy-doc-hidden pre-install
 
     apt-get update
-    apt-get install -yq sudo
-
+    apt-get install -yq sudo net-tools
 -->
 
 <!-- deploy-doc-start create-infrastructure -->
@@ -60,9 +53,8 @@ Options:
     sudo curl -L git.io/weave -o /usr/local/bin/weave
     sudo chmod a+x /usr/local/bin/weave
 
-<!-- deploy-doc-end -->
 
-### Linux (Ubuntu 16.04)
+<!-- deploy-doc-end -->
 
 <!-- deploy-doc-start create-infrastructure -->
 
@@ -71,16 +63,6 @@ Options:
 
 <!-- deploy-doc-end -->
 
-### macOS
-
-This will add a route between local-\>VM-\>application/Mesos. Without this you won't be able to access Mesos from your local machine. You'd have to run another container to gain access.
-
-```
-./minimesos-marathon.sh install
-./minimesos-marathon.sh route
-./minimesos-marathon.sh start
-```
-
 ### Running the load test
 
 There is a separate load-test available to simulate user traffic to the application. For more information see [Load Test](#loadtest).
@@ -88,29 +70,32 @@ This will send some traffic to the application, which will form the connection g
 
 <!-- deploy-doc-start run-tests -->
 
-    docker run --rm weaveworksdemos/load-test -d 300 -h localhost -c 2 -r 100
+    cd deploy/minimesos-marathon
+    docker run --rm --net=host weaveworksdemos/load-test -d 300 -h `./minimesos-marathon.sh ip`  -c 2 -r 100
 
 <!-- deploy-doc-end -->
 
 <!-- deploy-doc-hidden run-tests
 
-    docker run -\-rm weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5
+    docker run -\-rm -v=/var/run/weave/weave.sock:/var/run/weave/weave.sock docker docker -H unix:///var/run/weave/weave.sock run -\-rm -\-name=healthcheck weaveworksdemos/healthcheck:snapshot -s catalogue,user,cart,orders,shipping,queue-master,payment -d 1 -r 5
 
+    if [ $? -ne 0 ]; then
+        exit 1;
+    fi
 -->
 
 ### Cleaning up
 
-### Linux
-
 <!-- deploy-doc-start destroy-infrastructure -->
 
+    cd deploy/minimesos-marathon
     ./minimesos-marathon.sh stop
 
 <!-- deploy-doc-end -->
 
-### macOS
+<!-- deploy-doc-hidden destroy-infrastructure 
 
-```
-./minimesos-marathon.sh stop
-./minimesos-marathon.sh uninstall
-```
+    cd deploy/minimesos-marathon
+    rm minimesosFile
+
+-->
