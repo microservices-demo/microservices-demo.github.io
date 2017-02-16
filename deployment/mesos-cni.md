@@ -136,7 +136,7 @@ This will send some traffic to the application, which will form the connection g
 
     ssh -i $KEY ubuntu@$MASTER 'sudo mesos-execute -\-networks=weave -\-shell -\-resources=cpus:0.2\;mem:1024 -\-name=healthcheck -\-command="cd /; ./healthcheck.rb -s orders.mesos-executeinstance.weave.local,user.mesos-executeinstance.weave.local,payment.mesos-executeinstance.weave.local,cart.mesos-executeinstance.weave.local,catalogue.mesos-executeinstance.weave.local,shipping.mesos-executeinstance.weave.local -d 60 -r 5" -\-docker_image=weaveworksdemos/healthcheck:snapshot -\-master=localhost:5050' > /tmp/healthcheck.log
 
-    ssh -i $KEY ubuntu@$MASTER "mesos tail -n 100 -i healthcheck stdout"
+    ssh -i $KEY ubuntu@$MASTER ". ~/.bashrc; mesos tail -n 100 -i healthcheck stdout"
 
     RET=$(cat /tmp/healthcheck.log | perl -n -e'/status ([0-9]+)/ && print $1')
     if [ $RET -ne 0 ]; then

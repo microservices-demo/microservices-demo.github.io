@@ -14,14 +14,9 @@ minimesos-marathon.sh [OPTION]... [COMMAND]
 
 Starts the weavedemo microservices application on minimesos.
 
-Requirements: Docker-machine, weave and minimesos must be installed.
-
-Tested on: docker-machine version 0.7.0, build a650a40. Weave 1.6.0. minimesos 0.9.0. Mesos 0.25.
+Requirements: Docker, weave and minimesos must be installed.
 
 Commands:
-install           Creates a new docker-machine VM.
-route             Create a route towards the docker-machine
-uninstall         Removes docker-machine VM.
 start             Starts weave, minimesos and the demo application
 stop              Stops weave, minimesos and the demo application
 
@@ -38,7 +33,6 @@ Options:
 ```
 
 ### Prerequisites
-- *macOS only* `Docker-machine`
 - [`minimesos`](https://minimesos.org)
 - `weave`
 - `curl`
@@ -46,8 +40,7 @@ Options:
 <!-- deploy-doc-hidden pre-install
 
     apt-get update
-    apt-get install -yq sudo
-
+    apt-get install -yq sudo net-tools
 -->
 
 <!-- deploy-doc-start create-infrastructure -->
@@ -60,9 +53,8 @@ Options:
     sudo curl -L git.io/weave -o /usr/local/bin/weave
     sudo chmod a+x /usr/local/bin/weave
 
-<!-- deploy-doc-end -->
 
-### Linux (Ubuntu 16.04)
+<!-- deploy-doc-end -->
 
 <!-- deploy-doc-start create-infrastructure -->
 
@@ -70,16 +62,6 @@ Options:
     ./minimesos-marathon.sh start
 
 <!-- deploy-doc-end -->
-
-### macOS
-
-This will add a route between local-\>VM-\>application/Mesos. Without this you won't be able to access Mesos from your local machine. You'd have to run another container to gain access.
-
-```
-./minimesos-marathon.sh install
-./minimesos-marathon.sh route
-./minimesos-marathon.sh start
-```
 
 ### Running the load test
 
@@ -94,23 +76,15 @@ This will send some traffic to the application, which will form the connection g
 
 <!-- deploy-doc-hidden run-tests
 
-    docker run -\-rm weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5
+    docker run -\-rm -\-net=weave -\-hostname=healthcheck.weave.local weaveworksdemos/healthcheck:snapshot -s orders.weave.local,cart.weave.local,payment,user,catalogue,shipping,queue-master -d 60 -r 5
 
 -->
 
 ### Cleaning up
 
-### Linux
-
 <!-- deploy-doc-start destroy-infrastructure -->
 
+    cd deploy/minimesos-marathon
     ./minimesos-marathon.sh stop
 
 <!-- deploy-doc-end -->
-
-### macOS
-
-```
-./minimesos-marathon.sh stop
-./minimesos-marathon.sh uninstall
-```
