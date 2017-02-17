@@ -41,6 +41,7 @@ Options:
 
     apt-get update
     apt-get install -yq sudo net-tools
+
 -->
 
 <!-- deploy-doc-start create-infrastructure -->
@@ -52,7 +53,6 @@ Options:
 
     sudo curl -L git.io/weave -o /usr/local/bin/weave
     sudo chmod a+x /usr/local/bin/weave
-
 
 <!-- deploy-doc-end -->
 
@@ -71,17 +71,18 @@ This will send some traffic to the application, which will form the connection g
 <!-- deploy-doc-start run-tests -->
 
     cd deploy/minimesos-marathon
-    docker run --rm --net=host weaveworksdemos/load-test -d 300 -h `./minimesos-marathon.sh ip`  -c 2 -r 100
+    docker run --rm weaveworksdemos/load-test -d 300 -h localhost -c 2 -r 100
 
 <!-- deploy-doc-end -->
 
 <!-- deploy-doc-hidden run-tests
 
-    docker run -\-rm -v=/var/run/weave/weave.sock:/var/run/weave/weave.sock docker docker -H unix:///var/run/weave/weave.sock run -\-rm -\-name=healthcheck weaveworksdemos/healthcheck:snapshot -s catalogue,user,cart,orders,shipping,queue-master,payment -d 1 -r 5
+    docker run -\-rm -\-name=healthcheck weaveworksdemos/healthcheck:snapshot -s catalogue,user,cart,orders,shipping,queue-master,payment -d 60 -r 5
 
     if [ $? -ne 0 ]; then
         exit 1;
     fi
+
 -->
 
 ### Cleaning up
@@ -90,12 +91,6 @@ This will send some traffic to the application, which will form the connection g
 
     cd deploy/minimesos-marathon
     ./minimesos-marathon.sh stop
-
-<!-- deploy-doc-end -->
-
-<!-- deploy-doc-hidden destroy-infrastructure 
-
-    cd deploy/minimesos-marathon
     rm minimesosFile
 
--->
+<!-- deploy-doc-end -->
