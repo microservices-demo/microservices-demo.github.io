@@ -91,6 +91,5 @@ This will send some traffic to the application, which will form the connection g
 
     cd deploy/minimesos-marathon
     ./minimesos-marathon.sh stop
-    rm minimesosFile
 
 <!-- deploy-doc-end -->
