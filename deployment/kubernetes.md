@@ -130,6 +130,18 @@ There are two options for running Weave Scope, either you can run the UI locally
 
 <!-- deploy-doc-end -->
 
+### Service autoscaling (optional)
+If you want all stateless services to scale automatically based on the CPU utilization, you can deploy all the manifests in the "deploy/kubernetes/autoscaling" directory.
+The autoscaling directory contains Kubernetes horizontal pod autoscalers for all the stateless services, and the Heapster monitoring application with it's depedencies.
+
+```
+    master_ip=$(terraform output -json | jq -r '.master_address.value')
+    scp -i ~/.ssh/deploy-docs-k8s.pem -o StrictHostKeyChecking=no -rp deploy/kubernetes/autoscaling ubuntu@$master_ip:/tmp/
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/autoscaling
+```
+
+If you cause enough load on the application you should see the various services scaling up in number.
+
 ### View the results
 Run `terraform output` command to see the load balancer and node URLs
 
