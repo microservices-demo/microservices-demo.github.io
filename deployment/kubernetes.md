@@ -13,11 +13,11 @@ Weave Net and Weave Scope.
 * *Optional* [AWS Account](https://aws.amazon.com/)
 * *Optional* [awscli](http://docs.aws.amazon.com/cli/latest/userguide/installing.html)
 
-<!-- deploy-doc require-env AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION TF_VAR_aws_region -->
+<!-- deploy-doc require-env AWS_ACCESS_KEY_ID AWS_SECRET_ACCESS_KEY AWS_DEFAULT_REGION -->
 <!-- deploy-doc-start pre-install -->
 
     curl -sSL https://get.docker.com/ | sh
-    apt-get update && apt-get install -yq jq python-pip curl unzip build-essential python-dev
+    apt-get install -yq jq python-pip curl unzip build-essential python-dev
     pip install awscli
     curl -o /tmp/terraform.zip https://releases.hashicorp.com/terraform/0.7.11/terraform_0.7.11_linux_amd64.zip
     unzip /tmp/terraform.zip -d /usr/bin
@@ -126,7 +126,7 @@ There are two options for running Weave Scope, either you can run the UI locally
 <!-- deploy-doc-start create-infrastructure -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests/zipkin-ns.yaml -f /tmp/manifests
 
 <!-- deploy-doc-end -->
 
