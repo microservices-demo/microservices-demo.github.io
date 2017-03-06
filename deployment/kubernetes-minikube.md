@@ -27,6 +27,34 @@ minikube start
 
 Check if it's running with `minikube status`, and make sure the Kubernetes dashboard is running on http://192.168.99.100:30000.
 
+
+##### *(Optional)* Run with Fluentd + ELK based logging
+
+If you want to run the application using a more advanced logging setup based on Fluentd + ELK stack, there are 2 requirements:
+* assign at least 6 GB of memory to the minikube VM
+* increase vm.max_map_count to 262144 or higher (Required because Elasticsearch will not start if it detects a value lower than 262144).
+
+```
+minikube delete
+minikube config set memory 6144
+minikube start
+minikube ssh
+```
+
+Once logged into the VM:
+
+```
+$ sudo sysctl -w vm.max_map_count=262144
+```
+
+After these settings are done you can start the logging manifests.
+
+```
+kubectl create -f deploy/kubernetes/manifests-logging
+```
+
+You should be able to see the Kibana dashboard at http://192.168.99.100:31601.
+
 ### Deploy Sock Shop
 
 Deploy the Sock Shop application on Minikube

@@ -119,6 +119,16 @@ There are two options for running Weave Scope, either you can run the UI locally
     ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f 'https://cloud.weave.works/launch/k8s/weavescope.yaml?service-token=<token>'
 ```
 
+### *(Optional)* Setup Fluentd + ELK based logging
+* Copy the logging manifests
+* Start Fluentd, Elasticsearch and Kibana
+
+```
+    master_ip=$(terraform output -json | jq -r '.master_address.value')
+    scp -i ~/.ssh/deploy-docs-k8s.pem -rp deploy/kubernetes/manifests-logging ubuntu@$master_ip:/tmp/
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/manifests-logging/
+```
+
 ### Deploy Sock Shop
 * SSH into the master node
 * Deploy the sock shop
@@ -146,7 +156,7 @@ If you cause enough load on the application you should see the various services 
 Run `terraform output` command to see the load balancer and node URLs
 
 The sock shop is available at the sock_shop_address as displayed below. The scope app is accessible via the master and
-any of the node urls on port 30001. It may take a few moments for the apps to get running.
+any of the node urls on port 30001, while the same applies for Kibana if you deployed it, but using port 31601. It may take a few moments for the apps to get running.
 
 ```
 Outputs:
