@@ -138,7 +138,7 @@ Using any IP from the command: `terraform output`
 
     cat > /root/boot.sh <<-EOF
 #!/usr/bin/env bash
-docker service create -\-constraint='node.role == manager' -\-network=dockerswarm_default -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s user,catalogue,cart,shipping,payment,orders -r 5
+docker service create -\-constraint='node.role == manager' -\-network=dockerswarm_default -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s user,catalogue,carts,shipping,payment,orders -r 5
 sleep 60
 ID=\$(docker ps -a | grep healthcheck | awk '{print \$1}' | head -n1)
 docker logs -f \$ID

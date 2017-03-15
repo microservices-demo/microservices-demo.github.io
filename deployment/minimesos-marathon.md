@@ -77,7 +77,7 @@ This will send some traffic to the application, which will form the connection g
 
 <!-- deploy-doc-hidden run-tests
 
-    docker run -\-rm -v=/var/run/weave/weave.sock:/var/run/weave/weave.sock docker docker -H=unix:///var/run/weave/weave.sock run -\-rm -\-name=healthcheck weaveworksdemos/healthcheck:snapshot -s catalogue,user,cart,orders,shipping,queue-master,payment -d 60 -r 5
+    docker run -\-rm -v=/var/run/weave/weave.sock:/var/run/weave/weave.sock docker docker -H=unix:///var/run/weave/weave.sock run -\-rm -\-name=healthcheck weaveworksdemos/healthcheck:snapshot -s catalogue,user,carts,orders,shipping,queue-master,payment -d 60 -r 5
 
     if [ $? -ne 0 ]; then
         exit 1;

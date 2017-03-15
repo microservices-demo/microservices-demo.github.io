@@ -113,7 +113,7 @@ This will send some traffic to the application, which will form the connection g
 <!-- deploy-doc-hidden run-tests
 
     eval $(terraform output -state=/tmp/mesos-terraform/terraform.tfstate -json | jq -r '.[].value')
-    ssh -i $KEY ubuntu@$SLAVE0 "eval \$(weave env); docker run -\-rm weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
+    ssh -i $KEY ubuntu@$SLAVE0 "eval \$(weave env); docker run -\-rm weaveworksdemos/healthcheck:snapshot -s orders,carts,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
 
     if [ $? -ne 0 ]; then
         exit 1;

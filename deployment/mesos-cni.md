@@ -134,7 +134,7 @@ This will send some traffic to the application, which will form the connection g
 
     eval $(terraform output -state=/tmp/mesos-terraform/terraform.tfstate -json | jq -r '.[].value')
 
-    ssh -i $KEY ubuntu@$MASTER 'sudo mesos-execute -\-networks=weave -\-shell -\-resources=cpus:0.2\;mem:1024 -\-name=healthcheck -\-command="cd /; ./healthcheck.rb -s orders.mesos-executeinstance.weave.local,user.mesos-executeinstance.weave.local,payment.mesos-executeinstance.weave.local,cart.mesos-executeinstance.weave.local,catalogue.mesos-executeinstance.weave.local,shipping.mesos-executeinstance.weave.local -d 60 -r 5" -\-docker_image=weaveworksdemos/healthcheck:snapshot -\-master=localhost:5050' > /tmp/healthcheck.log
+    ssh -i $KEY ubuntu@$MASTER 'sudo mesos-execute -\-networks=weave -\-shell -\-resources=cpus:0.2\;mem:1024 -\-name=healthcheck -\-command="cd /; ./healthcheck.rb -s orders.mesos-executeinstance.weave.local,user.mesos-executeinstance.weave.local,payment.mesos-executeinstance.weave.local,carts.mesos-executeinstance.weave.local,catalogue.mesos-executeinstance.weave.local,shipping.mesos-executeinstance.weave.local -d 60 -r 5" -\-docker_image=weaveworksdemos/healthcheck:snapshot -\-master=localhost:5050' > /tmp/healthcheck.log
 
     ssh -i $KEY ubuntu@$MASTER ". ~/.profile; mesos tail -n 100 -i healthcheck stdout"
 

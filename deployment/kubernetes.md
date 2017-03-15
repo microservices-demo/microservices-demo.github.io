@@ -191,7 +191,7 @@ This will send some traffic to the application, which will form the connection g
     docker run --rm weaveworksdemos/load-test -d 300 -h $elb_url -c 2 -r 100
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "kubectl run -i -t -\-namespace=sock-shop healthcheck -\-restart=Never -\-image=weaveworksdemos/healthcheck:snapshot -- -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "kubectl run -i -t -\-namespace=sock-shop healthcheck -\-restart=Never -\-image=weaveworksdemos/healthcheck:snapshot -- -s orders,carts,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
 
     set +e
 

@@ -199,7 +199,7 @@ docker run --rm weaveworksdemos/load-test -d 300 -h 192.168.59.102 -c 2 -r 100
     public_dns=$(aws ec2 describe-instances -\-filter "Name=private-dns-name,Values=${node_hostname}.eu-central-1.compute.internal" "Name=instance-state-name,Values=running" | jq -r ".Reservations[].Instances[0].PublicIpAddress" | head -n1)
     docker run -\-rm weaveworksdemos/load-test -d 300 -h $public_dns -c 2 -r 20
 
-    vagrant ssh ci-sockshop-nomad-node1 -c "eval \$(weave env); nomad run weavedemo.nomad; docker create -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s orders,cart,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
+    vagrant ssh ci-sockshop-nomad-node1 -c "eval \$(weave env); nomad run weavedemo.nomad; docker create -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s orders,carts,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
     vagrant ssh ci-sockshop-nomad-node1 -c "docker network connect backoffice healthcheck; \
         docker network connect internal healthcheck; \
         docker network connect external healthcheck; \
