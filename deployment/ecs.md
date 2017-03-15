@@ -69,7 +69,7 @@ To ensure that the application is running properly, you could perform some load 
 <!-- deploy-doc-hidden run-tests
 
     instance=$(aws ec2 describe-instances -\-filter "Name=key-name,Values=microservices-demo-key" "Name=instance-state-name,Values=running" | jq -r ".Reservations[0].Instances[0].PublicIpAddress")
-    ssh -i ~/.ssh/microservices-demo-key.pem -o StrictHostKeyChecking=no ec2-user@$instance "eval \$(weave env); docker run -\-rm -t weaveworksdemos/healthcheck:snapshot -s user,catalogue,cart,shipping,payment,orders,queue-master -d 180 -r 5"
+    ssh -i ~/.ssh/microservices-demo-key.pem -o StrictHostKeyChecking=no ec2-user@$instance "eval \$(weave env); docker run -\-rm -t weaveworksdemos/healthcheck:snapshot -s user,catalogue,carts,shipping,payment,orders,queue-master -d 180 -r 5"
 
     if [ $? -ne 0 ]; then
         exit 1;
