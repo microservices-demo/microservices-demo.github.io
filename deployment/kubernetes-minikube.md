@@ -22,11 +22,12 @@ cd microservices-demo
 You can start Minikube by running:
 
 ```
-minikube start
+minikube start --memory 4096
 ```
 
 Check if it's running with `minikube status`, and make sure the Kubernetes dashboard is running on http://192.168.99.100:30000.
 
+Approximately 4 GB of RAM is required to run all the services.
 
 ##### *(Optional)* Run with Fluentd + ELK based logging
 
