@@ -119,6 +119,9 @@ There are two options for running Weave Scope, either you can run the UI locally
     ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f 'https://cloud.weave.works/launch/k8s/weavescope.yaml?service-token=<token>'
 ```
 
+### *(Optional)* Setup Weave Flux
+You may optionally choose to configure Weave Flux which allows automatic deployment of changes. Unfortunately it's beyond the scope of this document, but you can read more about it [here](http://www.weave.works/guides/cloud-guide-part-2-deploy-continuous-delivery/).
+
 ### *(Optional)* Setup Fluentd + ELK based logging
 * Copy the logging manifests
 * Start Fluentd, Elasticsearch and Kibana
