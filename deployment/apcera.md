@@ -3,15 +3,15 @@ layout: default
 deployDoc: true
 ---
 
-## Socks Shop on Apcera
+## Sock Shop on Apcera
 
-These instructions will help you deploy and run the Socks Shop application on the [Apcera Platform](https://www.apcera.com/platform), an enterprise-grade container management platform for cloud-native and legacy applications.  Apcera is secure by default, only permitting things explicitly authorized by policy, and supports multi-cloud deployments.
+These instructions will help you deploy and run the Sock Shop application on the [Apcera Platform](https://www.apcera.com/platform), an enterprise-grade container management platform for cloud-native and legacy applications.  Apcera is secure by default, only permitting things explicitly authorized by policy, and supports multi-cloud deployments.
 
-Apcera has tested Socks Shop on the Apcera Community Edition running single-cloud clusters in Amazon AWS, Google Cloud Platform, Microsoft Azure, and VMware.  We have also tested Socks Shop on the Apcera Enterprise Edition running a multi-cloud cluster that spanned across AWS, GCP, and VMware.
+Apcera has tested Sock Shop on the Apcera Community Edition running single-cloud clusters in Amazon AWS, Google Cloud Platform, Microsoft Azure, and VMware.  We have also tested Sock Shop on the Apcera Enterprise Edition running a multi-cloud cluster that spanned across AWS, GCP, and VMware.
 
 ### Packaging
 
-The Socks Shop application is packaged and configured for Apcera using a [Multi-Resource Manifest file](https://docs.apcera.com/jobs/multi-resource-manifests/) called socksshop-docker.json which is similar to a Docker Compose file. Scripts are provided to make it easy to deploy all the services and a network from the manifest, to start and stop the services, and to delete everything that was deployed.
+The Sock Shop application is packaged and configured for Apcera using a [Multi-Resource Manifest file](https://docs.apcera.com/jobs/multi-resource-manifests/) called socksshop-docker.json which is similar to a Docker Compose file. Scripts are provided to make it easy to deploy all the services and a network from the manifest, to start and stop the services, and to delete everything that was deployed.
 
 ### Pre-requisites
 
@@ -23,7 +23,7 @@ The Socks Shop application is packaged and configured for Apcera using a [Multi-
 git clone https://github.com/microservices-demo/microservices-demo
 cd microservices-demo/deploy/apcera
 ```
-- *(Optional)* If you are not an admin user in your Apcera cluster, you might need an Apcera administrator to import a [policy](https://docs.apcera.com/policy/introduction/) file to give you permission to create the Socks Shop services and network in your sandbox.
+- *(Optional)* If you are not an admin user in your Apcera cluster, you might need an Apcera administrator to import a [policy](https://docs.apcera.com/policy/introduction/) file to give you permission to create the Sock Shop services and network in your sandbox.
 
 ```
 apc import policy socksShop.pol
@@ -31,11 +31,11 @@ apc import policy socksShop.pol
 
 ### Networking and Security
 
-In this demo scenario, we create a single [virtual network](https://docs.apcera.com/jobs/virtual-networks/) to which all the services except *zipkin* and *user-sim* are added. Services inside the virtual network can all talk to each other. Apcera [job links](https://docs.apcera.com/jobs/job-links/) are used to let the *user-sim* load testing service send requests to the *front-end* service and to let the main Socks Shop services send traces to the *zipkin* service. Using job links in this fashion simulates how real, cloud-based load testing and APM solutions can be integrated into applications running on Apcera without sacrificing security.
+In this demo scenario, we create a single [virtual network](https://docs.apcera.com/jobs/virtual-networks/) to which all the services except *zipkin* and *user-sim* are added. Services inside the virtual network can all talk to each other. Apcera [job links](https://docs.apcera.com/jobs/job-links/) are used to let the *user-sim* load testing service send requests to the *front-end* service and to let the main Sock Shop services send traces to the *zipkin* service. Using job links in this fashion simulates how real, cloud-based load testing and APM solutions can be integrated into applications running on Apcera without sacrificing security.
 
 ### Deployment
 
-All of the Socks Shop services and the network are deployed to Apcera with a single script. However, you first need to target your cluster and login to it with APC. After that, just run the deploySocksShop.sh script.
+All of the Sock Shop services and the network are deployed to Apcera with a single script. However, you first need to target your cluster and login to it with APC. After that, just run the deploySocksShop.sh script.
 
 <!-- deploy-doc require-env APCERA_CLUSTER APCERA_USER APCERA_PASSWORD -->
 <!-- deploy-doc-hidden pre-install
@@ -57,13 +57,13 @@ After determining your targeted cluster and default namespace, this script does 
 - It sets your current namespace to \<your_default_namespace\>/socksshop.
 - It runs the "apc manifest deploy" command against the socksshop-docker.json manifest to create the services and the socksshop-network virtual network.
 - It creates [job affinity tags](https://docs.apcera.com/jobs/job-affinity/) to make sure that each service that uses a database is deployed to the same Apcera instance manager as the database.
-- It then runs the startSocksShop.sh script to start all of the Socks Shop services.
+- It then runs the startSocksShop.sh script to start all of the Sock Shop services.
 
 Altogether, the script should take under two minutes to run.
 
 ### Using
 
-- You can access the Socks Shop front-end service in a browser with the URL:
+- You can access the Sock Shop front-end service in a browser with the URL:
   - http://front-end.\<your_cluster\>
 - Note that the *edge-router* service is not used since Apcera provides its own router.
 - You can view logs for the services in the Apcera Web Console or by using the "apc app logs" command.
@@ -81,7 +81,7 @@ You can use the startSocksShop.sh and stopSocksShop.sh scripts to start and stop
 
 ### Cleaning up
 
-Run the deleteSocksShop.sh script to delete the Socks Shop services and network.
+Run the deleteSocksShop.sh script to delete the Sock Shop services and network.
 
 <!-- deploy-doc-start destroy-infrastructure -->
 
