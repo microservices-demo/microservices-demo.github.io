@@ -6,7 +6,7 @@ layout: default
 
 
 ### Goal
-In this scenario, you'll set up and run the containerized Socks Shop
+In this scenario, you'll set up and run the containerized Sock Shop
 eCommerce application, with fully automated deployments, in 30
 minutes or less.
 
@@ -94,7 +94,7 @@ Take note of the following values:
 ### Configure an automated CI/CD pipeline
 
 Your Weave-enabled Amazon ECS cluster should now be running 15 out of the 16 services
-of the Socks Shop application (verify this by navigating to [EC2 Container Service](https://console.aws.amazon.com/ecs/home#/clusters/ecs-weave-shippable-demo/services)).
+of the Sock Shop application (verify this by navigating to [EC2 Container Service](https://console.aws.amazon.com/ecs/home#/clusters/ecs-weave-shippable-demo/services)).
 We'll use Shippable to set up an automated CI/CD pipeline to deploy the
 <a href="https://github.com/microservices-demo/front-end" style="color: orange">
 front-end</a> service.

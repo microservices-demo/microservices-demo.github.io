@@ -2,7 +2,7 @@
 layout: default
 ---
 <h2>User Accounts</h2>
-<p>To log into Socks Shop and complete a transaction, you'll need credentials. 
+<p>To log into Sock Shop and complete a transaction, you'll need credentials. 
   The 'user' microservice ships with the following accounts.</p>
 <table class="user-creds">
   <thead>
