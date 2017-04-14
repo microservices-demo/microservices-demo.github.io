@@ -3,7 +3,7 @@ layout: quickstart
 ---
 ## Quick start
 
-  The easiest and fastest way to get started with the Socks Shop application is by using Docker Compose.  If you don't have Docker and Compose installed, 
+  The easiest and fastest way to get started with the Sock Shop application is by using Docker Compose.  If you don't have Docker and Compose installed, 
   please visit the [the Docker website](https://www.docker.com) for instructions on how to install them.
 
 ### Clone the application repository

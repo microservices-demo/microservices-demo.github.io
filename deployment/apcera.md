@@ -13,6 +13,7 @@ Apcera has tested Sock Shop on the Apcera Community Edition running single-cloud
 
 The Sock Shop application is packaged and configured for Apcera using a [Multi-Resource Manifest file](https://docs.apcera.com/jobs/multi-resource-manifests/) called sockshop-docker.json which is similar to a Docker Compose file. Scripts are provided to make it easy to deploy all the services and a network from the manifest, to start and stop the services, and to delete everything that was deployed.
 
+
 ### Pre-requisites
 
 - Set up your preferred private or public cloud environment, preferably AWS, Google, Azure, or VMware.
@@ -59,6 +60,7 @@ After determining your targeted cluster and default namespace, this script does 
 - It creates [job affinity tags](https://docs.apcera.com/jobs/job-affinity/) to make sure that each service that uses a database is deployed to the same Apcera instance manager as the database.
 - It then runs the startSockShop.sh script to start all of the Sock Shop services.
 
+
 Altogether, the script should take under two minutes to run.
 
 ### Using
@@ -82,6 +84,7 @@ You can use the startSockShop.sh and stopSockShop.sh scripts to start and stop a
 ### Cleaning up
 
 Run the deleteSockShop.sh script to delete the Sock Shop services and network.
+
 
 <!-- deploy-doc-start destroy-infrastructure -->
 
