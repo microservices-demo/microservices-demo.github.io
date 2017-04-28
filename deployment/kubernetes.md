@@ -80,8 +80,10 @@ Our master node makes use of some of the files in this repo so lets securely cop
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
     ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip sudo kubeadm init > k8s-init.log
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "sudo cp /etc/kubernetes/admin.conf /home/ubuntu/"
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "sudo chown \$(id -u):\$(id -g) \$HOME/admin.conf"
     grep -e --token k8s-init.log > join.cmd
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f https://git.io/weave-kube
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f https://git.io/weave-kube-1.6
 
 <!-- deploy-doc-end -->
 
@@ -107,7 +109,7 @@ There are two options for running Weave Scope, either you can run the UI locally
 <!-- deploy-doc-start create-infrastructure -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f 'https://cloud.weave.works/launch/k8s/weavescope.yaml'
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f 'https://cloud.weave.works/launch/k8s/weavescope.yaml'
 
 <!-- deploy-doc-end -->
 
@@ -139,7 +141,7 @@ You may optionally choose to configure Weave Flux which allows automatic deploym
 <!-- deploy-doc-start create-infrastructure -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests/zipkin-ns.yaml -f /tmp/manifests
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests/zipkin-ns.yaml -f /tmp/manifests
 
 <!-- deploy-doc-end -->
 
@@ -194,7 +196,7 @@ This will send some traffic to the application, which will form the connection g
     docker run --rm weaveworksdemos/load-test -d 300 -h $elb_url -c 2 -r 100
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "kubectl run -i -t -\-namespace=sock-shop healthcheck -\-restart=Never -\-image=weaveworksdemos/healthcheck:snapshot -- -s orders,carts,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip "KUBECONFIG=\$HOME/admin.conf kubectl run -i -t -\-namespace=sock-shop healthcheck -\-restart=Never -\-image=weaveworksdemos/healthcheck:snapshot -- -s orders,carts,payment,user,catalogue,shipping,queue-master -d 60 -r 5"
 
     set +e
 

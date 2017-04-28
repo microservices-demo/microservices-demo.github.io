@@ -136,17 +136,11 @@ Using any IP from the command: `terraform output`
 
 <!-- deploy-doc-hidden run-tests
 
-    cat > /root/boot.sh <<-EOF
-#!/usr/bin/env bash
-docker service create -\-constraint='node.role == manager' -\-network=dockerswarm_default -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s user,catalogue,carts,shipping,payment,orders -r 5
-sleep 60
-ID=\$(docker ps -a | grep healthcheck | awk '{print \$1}' | head -n1)
-docker logs -f \$ID
-EOF
-
     master_ip=$(terraform output -json | jq -r '.master_address.value' )
-    scp -i ~/.ssh/docker-swarm.pem /root/boot.sh ubuntu@$master_ip:/home/ubuntu/
-    ssh -i ~/.ssh/docker-swarm.pem ubuntu@$master_ip "chmod +x boot.sh; ./boot.sh"
+    ssh -i ~/.ssh/docker-swarm.pem ubuntu@$master_ip "docker service create -\-constraint='node.role == manager' -\-network=dockerswarm_default -\-name healthcheck weaveworksdemos/healthcheck:snapshot -s user,catalogue,carts,shipping,payment,orders -r 5"
+    sleep 60
+    ID=$(ssh -i ~/.ssh/docker-swarm.pem ubuntu@$master_ip sh -c "docker ps -a | grep healthcheck | awk '{print $1}' | head -n1")
+    ssh -i ~/.ssh/docker-swarm.pem ubuntu@$master_ip sh -c "docker logs -f $ID"
 
     if [ $? -ne 0 ]; then
         exit 1;
