@@ -82,6 +82,9 @@ This will send some traffic to the application, which will form the connection g
 Zipkin is part of the deployment and has been written into some of the services.  While the system is up you can view the traces in
 Zipkin at http://localhost:9411.  Currently orders provide the most comprehensive traces.
 
+### Hystrix Circuit Breaker
+
+Hystrix circuit braking is integrated in the orders service, so when dependencies of the orders service fail, they will not be called, so they can recover and not cause further problems. The status of the circuit breakers can be seen in the dashboard that is included in this deployment, in aggregate at [http://localhost:8081/...](http://localhost:8081/monitor/monitor.html?streams=[{%22name%22%3A%22%22%2C%22stream%22%3A%22http%3A%2F%2Fhystrix-turbine%3A8000%2Fturbine.stream%22%2C%22auth%22%3A%22%22%2C%22delay%22%3A%22%22}]), or by selecting streams manually at [http://localhost:8081](http://localhost:8081).
 
 ### Cleaning up
 
