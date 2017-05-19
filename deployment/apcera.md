@@ -1,6 +1,5 @@
 ---
 layout: default
-deployDoc: true
 ---
 
 ## Sock Shop on Apcera
