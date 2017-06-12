@@ -1,6 +1,6 @@
 ---
 layout: default
-deployDoc: true
+deployDoc: false
 ---
 
 ## Deploying Sock Shop on any Kubernetes cluster
@@ -18,7 +18,7 @@ This explains how to deploy the Sock Shop onto any existing Kubernetes cluster.
 ### Deploy Sock Shop
 
 1. [Clone the microservices-demo repository](https://github.com/microservices-demo/microservices-demo)
-1. Go to the *deploy/kubernetes* folder
+2. Go to the *deploy/kubernetes* folder
     ```
     kubectl apply -f complete-demo.yaml
     ```
