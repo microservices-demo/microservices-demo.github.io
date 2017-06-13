@@ -24,19 +24,22 @@ Applatix is driven by YAML DSL. You'll find the YAML deployment specs of all the
 4. Deploy sock shop from the Applatix **Catalog**.
 
 It will take 1-2 minutes to deploy and you can see all the services in the web console.
-
+
 
 ### Using
 
 * You can access the Sock Shop front-end service in a browser * You can view logs for the services in the Applatix Web Console 
 
+
 ### Tracing
 
 [Zipkin](http://zipkin.io/) has been used in some of the services. While the services are running you can view the trace.
 
+
 ### Starting, Stopping, Terminating
 
 You can start, stop, terminate sock shop from the Applatix web console.
+
 
 ### Uninstalling Applatix
 
