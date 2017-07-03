@@ -141,16 +141,16 @@ You may optionally choose to configure Weave Flux which allows automatic deploym
 <!-- deploy-doc-start create-infrastructure -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests -f /tmp/manifests-no-zipkin
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests
 
 <!-- deploy-doc-end -->
 
 ### Deploy Sock Shop with Opentracing (optional)
-To deploy with opentracing run
+To deploy with opentracing run after deploying the sock-shop
 
 ```
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests -f /tmp/manifests-zipkin/zipkin-ns.yaml -f /tmp/manifests-zipkin
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests-zipkin/zipkin-ns.yaml -f /tmp/manifests-zipkin
 ```
 
 ### Service autoscaling (optional)
