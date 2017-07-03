@@ -22,7 +22,7 @@ cd microservices-demo
 You can start Minikube by running:
 
 ```
-minikube start --memory 4096
+minikube start --memory 8192
 ```
 
 Check if it's running with `minikube status`, and make sure the Kubernetes dashboard is running on http://192.168.99.100:30000.
@@ -61,7 +61,12 @@ You should be able to see the Kibana dashboard at http://192.168.99.100:31601.
 Deploy the Sock Shop application on Minikube
 
 ```
-kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests
+kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests -f deploy/kubernetes/manifests-no-zipkin
+```
+
+Optionally start with Opentracing enabled
+```
+kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests -f deploy/kubernetes/manifests-zipkin/zipkin-ns.yaml -f deploy/kubernetes/manifests-zipkin
 ```
 
 Wait for all the Sock Shop services to start:
