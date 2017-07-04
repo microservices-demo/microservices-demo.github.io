@@ -22,7 +22,7 @@ cd microservices-demo
 You can start Minikube by running:
 
 ```
-minikube start --memory 4096
+minikube start --memory 8192
 ```
 
 Check if it's running with `minikube status`, and make sure the Kubernetes dashboard is running on http://192.168.99.100:30000.
@@ -62,6 +62,11 @@ Deploy the Sock Shop application on Minikube
 
 ```
 kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests
+```
+
+To start Opentracing run the following command after deploying the sock shop
+```
+kubectl apply -f deploy/kubernetes/manifests-zipkin/zipkin-ns.yaml -f deploy/kubernetes/manifests-zipkin
 ```
 
 Wait for all the Sock Shop services to start:

@@ -141,9 +141,17 @@ You may optionally choose to configure Weave Flux which allows automatic deploym
 <!-- deploy-doc-start create-infrastructure -->
 
     master_ip=$(terraform output -json | jq -r '.master_address.value')
-    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests/zipkin-ns.yaml -f /tmp/manifests
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests/sock-shop-ns.yaml -f /tmp/manifests
 
 <!-- deploy-doc-end -->
+
+### Deploy Sock Shop with Opentracing (optional)
+To deploy with opentracing run after deploying the sock-shop
+
+```
+    master_ip=$(terraform output -json | jq -r '.master_address.value')
+    ssh -i ~/.ssh/deploy-docs-k8s.pem ubuntu@$master_ip KUBECONFIG=\$HOME/admin.conf kubectl apply -f /tmp/manifests-zipkin/zipkin-ns.yaml -f /tmp/manifests-zipkin
+```
 
 ### Service autoscaling (optional)
 If you want all stateless services to scale automatically based on the CPU utilization, you can deploy all the manifests in the "deploy/kubernetes/autoscaling" directory.
