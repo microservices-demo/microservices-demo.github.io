@@ -98,7 +98,7 @@ docker run --rm weaveworksdemos/load-test -d 5 -h 192.168.99.100:30001 -c 2 -r 1
 ### Uninstall the Sock Shop application
 
 ```
-kubectl delete -f deploy/kubernetes/manifests/sock-shop-ns.yml -f deploy/kubernetes/manifests
+kubectl delete -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests
 ```
 
 If you don't need the Minikube instance anymore you can delete it by running:
