@@ -13,11 +13,11 @@ See the notes for each deployment.
 </p>
 <p>
 For example, on the <a href="/docs/docker-single-weave.html">Docker (single-host with Weave)</a> deployment, on Docker for Mac:
-<pre><code>docker run weaveworksdemos/load-test -h localhost -r 100 -c 2</code></pre>
+<pre><code>docker run --net=host weaveworksdemos/load-test -h localhost -r 100 -c 2</code></pre>
 </p>
 <p>
 The syntax for running the load test container is:
-<pre><code>docker run weaveworksdemos/load-test -h $frontend-ip[:$port] -r 100 -c 2</code></pre>
+<pre><code>docker run --net=host weaveworksdemos/load-test -h $frontend-ip[:$port] -r 100 -c 2</code></pre>
 </p>
 <p>
 The help command provides more details about the parameters:
