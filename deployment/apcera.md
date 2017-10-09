@@ -26,7 +26,7 @@ cd microservices-demo/deploy/apcera
 - *(Optional)* If you are not an admin user in your Apcera cluster, you might need an Apcera administrator to import a [policy](https://docs.apcera.com/policy/introduction/) file to give you permission to create the Sock Shop services and network in your sandbox.
 
 ```
-apc import policy sockShop.pol
+apc policy import sockShop.pol
 ```
 
 ### Networking and Security
