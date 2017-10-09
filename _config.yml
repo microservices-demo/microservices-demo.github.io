@@ -1,9 +1,3 @@
-# Production settings
-
-baseurl: ""
-deploy_doc_url_prefix: https://microservices-demo.github.io/microservices-demo
-main_url_prefix: https://microservices-demo.github.io
-
 # Build settings
 markdown: kramdown
 exclude:

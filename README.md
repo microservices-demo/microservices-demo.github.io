@@ -1,5 +1,15 @@
-This directory contains the deployment and internal documentation.
+microservices-demo documentation
+================================
 
-Both are published on https://microservices-demo.github.io/microservices-demo/.
+> This directory contains the deployment and internal documentation.
+It is published at [microservices-demo.github.io](https://microservices-demo.github.io)
 
-There is a docker-compose included for local development. Note that it mounts `_config.yml.dev` in the place of `_config.yml`, to enable local linking.
+
+## Getting started
+
+There is a [docker-compose](https://docs.docker.com/compose/) included for
+local development, use the following command to start it:
+
+```
+docker-compose up
+```
