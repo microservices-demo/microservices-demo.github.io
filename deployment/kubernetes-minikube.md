@@ -22,7 +22,7 @@ cd microservices-demo
 You can start Minikube by running:
 
 ```
-minikube start --memory 8192
+minikube start --memory 8192 --cpus 4
 ```
 
 Check if it's running with `minikube status`, and make sure the Kubernetes dashboard is running on http://192.168.99.100:30000.
