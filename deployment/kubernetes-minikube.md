@@ -66,7 +66,7 @@ kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubern
 
 To start Opentracing run the following command after deploying the sock shop
 ```
-kubectl apply -f deploy/kubernetes/manifests-zipkin/zipkin-ns.yaml -f deploy/kubernetes/manifests-zipkin
+kubectl create -f deploy/kubernetes/manifests-jaeger/jaeger.yaml -f deploy/kubernetes/manifests-jaeger
 ```
 
 Wait for all the Sock Shop services to start:
@@ -81,8 +81,8 @@ Once the application is deployed, navigate to http://192.168.99.100:30001 to see
 
 ### Opentracing
 
-Zipkin is part of the deployment and has been written into some of the services.  While the system is up you can view the traces in
-Zipkin at http://192.168.99.100:30002.  Currently orders provide the most comprehensive traces, but this requires a user to place an order.
+Jaegar is part of the deployment and has been written into some of the services.  While the system is up you can view the traces in
+Jaegar at http://192.168.99.100:30552.  Currently orders provide the most comprehensive traces, but this requires a user to place an order.
 
 ### Run tests
 
