@@ -1,10 +1,10 @@
-FROM ruby:2.3-alpine
+FROM ruby:2.7-alpine
 
 COPY Gemfile .
 COPY Gemfile.lock .
 
 RUN apk update && \
-    apk add make gcc musl-dev nodejs python git
+    apk add make gcc musl-dev nodejs python2 git g++
 RUN bundle install
 
 WORKDIR /srv/jekyll
