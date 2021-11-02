@@ -61,7 +61,7 @@ You should be able to see the Kibana dashboard at http://192.168.99.100:31601.
 Deploy the Sock Shop application on Minikube
 
 ```
-kubectl create -f deploy/kubernetes/manifests/sock-shop-ns.yaml -f deploy/kubernetes/manifests
+kubectl create -f deploy/kubernetes/manifests
 ```
 
 To start Opentracing run the following command after deploying the sock shop
