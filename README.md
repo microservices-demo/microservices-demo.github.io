@@ -1,5 +1,4 @@
-microservices-demo documentation
-================================
+# DEPRECATED: microservices-demo documentation
 
 > This directory contains the deployment and internal documentation.
 It is published at [microservices-demo.github.io](https://microservices-demo.github.io)
